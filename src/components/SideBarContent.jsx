@@ -49,6 +49,7 @@ const SideBarContent = ({ page, setPage }) => {
 
     setPage(1);
   };
+
   const handleResetFilters = () => {
     setSelectedCategory(null); // Gán lại selectedCategory là null
     dispatch(searchProduct(undefined));

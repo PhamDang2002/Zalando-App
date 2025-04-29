@@ -43,8 +43,8 @@ export default function ProductDetail() {
   }
   if (!product) return null;
   return (
-    <div className="bg-gray-200 py-6">
-      <div className="px-10">
+    <div className="bg-gray-200">
+      <div className="container">
         <HeaderProductDetail
           product={product}
           isMediumLayout={isMediumLayout}

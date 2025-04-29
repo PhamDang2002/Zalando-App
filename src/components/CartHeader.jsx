@@ -4,14 +4,14 @@ import NavHeader from "./NavHeader";
 const CartHeader = () => {
   return (
     <div className="border-b border-b-black/10">
-      <div className="bg-orange px-10 text-white">
-        <div className="flex justify-end">
+      <div className="bg-orange text-white">
+        <div className="container flex justify-end">
           <NavHeader />
         </div>
       </div>
-      <div className="bg-white py-6">
-        <div className="px-10">
-          <nav className="md:flex md:items-center md:justify-between">
+      <div className="bg-white">
+        <div className="">
+          <nav className="container md:flex md:items-center md:justify-between">
             <Link to="/" className="flex flex-shrink-0 items-end">
               <div>
                 <svg viewBox="0 0 192 65" className="h-8 fill-orange md:h-11">

@@ -11,7 +11,7 @@ const RootLayout = () => {
   const { open, message, type } = useSelector((state) => state.snackbar);
   const dispatch = useDispatch();
   return (
-    <div>
+    <div className="">
       <Suspense fallback={<Loading />}>
         <Outlet />
       </Suspense>

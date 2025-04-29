@@ -7,9 +7,9 @@ const Header = () => {
   return (
     <AppBar
       position="static"
-      className="bg-[linear-gradient(-180deg,#f53d2d,#f63)] px-5 pb-5 pt-2 text-white"
+      className="bg-[linear-gradient(-180deg,#f53d2d,#f63)] text-white"
     >
-      <Toolbar className="flex !min-h-fit flex-col !items-end">
+      <Toolbar className="container flex !min-h-fit flex-col !items-end gap-0">
         <div className="">
           <NavHeader />
         </div>

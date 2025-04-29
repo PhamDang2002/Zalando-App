@@ -5,19 +5,25 @@ import RootLayout from "@pages/RootLayout";
 import ModalProvider from "@context/ModalProvider";
 import { lazy } from "react";
 import { ThemeProvider } from "@mui/material";
-const HomePage = lazy(() => import("@pages/HomePage"));
+
 import theme from "./configs/muiConfig";
 import RegisterPage from "@pages/auth/RegisterPage";
 import AuthLayout from "@pages/auth/AuthLayout";
 import LoginPage from "@pages/auth/LoginPage";
 import { Provider } from "react-redux";
 import { persistor, store } from "./redux/store";
-import ProtectedLayout from "@pages/ProtectedLayout";
 
 import { PersistGate } from "redux-persist/integration/react";
-import ProductDetail from "@pages/ProductDetail";
-import ProductCart from "@components/ProductCart";
-import CartLayout from "@pages/CartLayout";
+const HomePage = lazy(() => import("@pages/HomePage"));
+const ProductDetail = lazy(() => import("@pages/ProductDetail"));
+const UserLayout = lazy(() => import("@pages/UserLayout"));
+const Profile = lazy(() => import("@components/Profile"));
+const HistoryPurchase = lazy(() => import("@components/HistoryPurchase"));
+const ChangePassword = lazy(() => import("@components/ChangePassword"));
+const ProductCart = lazy(() => import("@components/ProductCart"));
+const CartLayout = lazy(() => import("@pages/CartLayout"));
+const ProtectedLayout = lazy(() => import("@pages/ProtectedLayout"));
+
 import Loading from "@components/Loading";
 
 const router = createBrowserRouter([
@@ -34,6 +40,24 @@ const router = createBrowserRouter([
           {
             path: "/products/:id",
             element: <ProductDetail />,
+          },
+
+          {
+            element: <UserLayout />,
+            children: [
+              {
+                path: "/user/profile",
+                element: <Profile />,
+              },
+              {
+                path: "/user/password",
+                element: <ChangePassword />,
+              },
+              {
+                path: "/user/purchase",
+                element: <HistoryPurchase />,
+              },
+            ],
           },
         ],
       },

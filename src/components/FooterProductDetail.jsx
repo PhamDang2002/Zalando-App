@@ -1,9 +1,9 @@
 import DOMPurify from "dompurify";
 const FooterProductDetail = ({ product, productsData, ProductList }) => {
   return (
-    <div>
-      <div className="mt-8">
-        <div className="px-10">
+    <div className="">
+      <div className="container mt-8">
+        <div className="">
           <div className="bg-white p-4 shadow">
             <div className="rounded bg-gray-50 p-4 text-lg capitalize text-slate-700">
               Mô tả sản phẩm
@@ -18,8 +18,8 @@ const FooterProductDetail = ({ product, productsData, ProductList }) => {
           </div>
         </div>
       </div>
-      <div className="mt-8">
-        <div className="px-10">
+      <div className="container mt-8">
+        <div className="">
           <div className="uppercase text-gray-400">CÓ THỂ BẠN CŨNG THÍCH</div>
           {productsData && (
             <div className="mt-6 grid grid-cols-2 gap-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">

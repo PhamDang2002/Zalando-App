@@ -6,7 +6,7 @@ const initialState = {
   userInfo: {},
   typeProduct: "all",
   page: 1,
-  cart: [],
+  handleCategoryChange: null,
 };
 
 export const authSlice = createSlice({
@@ -60,30 +60,6 @@ export const authSlice = createSlice({
     idProductDetail: (state, action) => {
       state.idProductDetail = action.payload;
     },
-    productDetailCart: (state, action) => {
-      if (!Array.isArray(state.cart)) {
-        state.cart = [];
-      }
-
-      const product = action.payload.data; // Đối tượng sản phẩm
-      const productId = product._id; // ID sản phẩm
-
-      // Kiểm tra xem sản phẩm đã có trong giỏ chưa
-      const existingProduct = state.cart.find(
-        (item) => item.data._id === productId,
-      );
-
-      if (existingProduct) {
-        // Nếu đã có, tăng buy_count lên 1
-        existingProduct.buyCount += 1;
-      } else {
-        // Nếu chưa có, thêm mới vào giỏ với buy_count = 1
-        state.cart.push({
-          data: product,
-          buyCount: 1,
-        });
-      }
-    },
   },
 });
 
@@ -102,6 +78,5 @@ export const {
   orderByTes,
   pageSizeTes,
   idProductDetail,
-  productDetailCart,
 } = authSlice.actions;
 export default authSlice.reducer;

@@ -1,5 +1,5 @@
-import { productDetailCart } from "@redux/slices/authSlice";
 import { usePurchaseMutation } from "@services/rootApi";
+import { useState } from "react";
 import { useEffect } from "react";
 
 import { useDispatch } from "react-redux";
@@ -23,29 +23,20 @@ const HeaderProductDetail = ({
   rateSale,
   QuantityController,
 }) => {
+  const [productCart, setProductCart] = useState([]);
   const [purchase, { data, isLoading }] = usePurchaseMutation();
   const getData = useParams();
   const product_id = getData.id;
   const buy_count = buyCount;
-  console.log(buy_count);
   const dispatch = useDispatch();
   function onSubmit() {
     const formData = { product_id, buy_count: buyCount };
-
-    // Dispatch sản phẩm vào giỏ hàng
-    dispatch(productDetailCart({ data: product, buyCount }));
-
     purchase(formData); // Gọi API để thêm sản phẩm vào giỏ
   }
-
-  console.log(data);
-
   useEffect(() => {
-    if (data) {
-      dispatch(productDetailCart(data));
-    }
+    setProductCart(data);
   }, [data, dispatch]);
-  console.log(data);
+  console.log(productCart);
   return (
     <div>
       <div className="bg-white p-4 shadow">

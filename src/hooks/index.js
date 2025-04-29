@@ -1,4 +1,9 @@
-import { logout, searchProduct } from "@redux/slices/authSlice";
+import {
+  logout,
+  priceMaxApi,
+  priceMinApi,
+  searchProduct,
+} from "@redux/slices/authSlice";
 import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -11,6 +16,9 @@ import {
 import { useState } from "react";
 import { useMemo } from "react";
 import { useRef } from "react";
+import { useEffect } from "react";
+import { resetAlls } from "@redux/slices/settingsSlice";
+
 export const useLogout = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -59,7 +67,7 @@ export const useSearch = () => {
   const { isMediumLayout } = useDetectLayout();
   const [searchTerm, setSearchTerm] = useState();
   const dispatch = useDispatch();
-
+  const searchInputRef = useRef(null);
   const handleSearch = () => {
     dispatch(searchProduct(searchTerm));
   };
@@ -68,6 +76,10 @@ export const useSearch = () => {
     if (e.key === "Enter") {
       e.preventDefault(); // Ngăn chặn hành động mặc định (refresh trang)
       handleSearch(); // Gọi hàm tìm kiếm
+      setSearchTerm("");
+      if (searchInputRef.current) {
+        searchInputRef.current.value = ""; // Đặt lại ô tìm kiếm về rỗng
+      }
     }
   };
 
@@ -77,6 +89,7 @@ export const useSearch = () => {
     setSearchTerm,
     handleSearch,
     handleKeyDown,
+    searchInputRef,
   };
 };
 
@@ -165,5 +178,48 @@ export const useProductDetail = ({ activeImage, setActiveImage }) => {
     next,
     prev,
     handleBuyCount,
+  };
+};
+
+export const useSidebarForHeader = (handleCategoryChange) => {
+  const [priceMax, setPriceMax] = useState();
+  const [priceMin, setPriceMin] = useState();
+  const [errorMessage, setErrorMessage] = useState("");
+  const dispatch = useDispatch();
+
+  const [rating, setRating] = useState();
+
+  const handleApply = () => {
+    if (priceMax <= priceMin) {
+      setErrorMessage("Giá không phù hợp");
+    } else {
+      setErrorMessage("");
+      // Dispatch vào đây khi bấm "Áp dụng"
+      dispatch(priceMaxApi(priceMax));
+      dispatch(priceMinApi(priceMin));
+    }
+  };
+  const resetAll = () => {
+    setPriceMax("");
+    setPriceMin("");
+    dispatch(priceMaxApi(""));
+    dispatch(priceMinApi(""));
+    setRating(undefined);
+    handleCategoryChange(null);
+  };
+  useEffect(() => {
+    dispatch(resetAlls(resetAll));
+  });
+  return {
+    priceMax,
+    setPriceMax,
+    priceMin,
+    setPriceMin,
+    errorMessage,
+    setErrorMessage,
+    handleApply,
+    resetAll,
+    rating,
+    setRating,
   };
 };

@@ -10,7 +10,7 @@ const NavHeader = () => {
   return (
     <div className="flex">
       <Popover
-        className="flex cursor-pointer items-center py-1 hover:text-white/70"
+        className="flex cursor-pointer items-center hover:text-white/70"
         renderPopover={
           <div className="relative rounded-sm border border-gray-200 bg-white shadow-md">
             <div className="flex flex-col py-2 pl-3 pr-28">
@@ -60,13 +60,13 @@ const NavHeader = () => {
         renderPopover={
           <div className="relative rounded-sm border border-gray-200 bg-white shadow-md">
             <Link
-              to="/"
+              to="/user/profile"
               className="block w-full bg-white px-4 py-3 text-left hover:bg-slate-100 hover:text-cyan-500"
             >
               Tài khoản của tôi
             </Link>
             <Link
-              to="/"
+              to="/user/purchase"
               className="block w-full bg-white px-4 py-3 text-left hover:bg-slate-100 hover:text-cyan-500"
             >
               Đơn mua

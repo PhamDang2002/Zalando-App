@@ -7,7 +7,6 @@ import { useEffect } from "react";
 
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 
 function HomePage() {
   const [page, setPage] = useState(1); // State for page
@@ -30,7 +29,7 @@ function HomePage() {
   }, [page, dispatch, pageSize]);
 
   return (
-    <div className="flex gap-4 p-8">
+    <div className="container flex gap-4 p-8">
       <Sidebar page={page} setPage={setPage} pageSize={pageSize} />
       <div className="flex-1">
         <ProductType setPage={setPage} page={page} pageSize={pageSize} />

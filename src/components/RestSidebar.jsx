@@ -1,40 +1,25 @@
 import { Button, List, TextField } from "@mui/material";
 import { Link } from "react-router-dom";
 import RatingStars from "./RatingStar";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { priceMaxApi, priceMinApi } from "@redux/slices/authSlice";
+
+import { useSidebarForHeader } from "@hooks/index";
 
 const RestSidebar = ({
   productList,
   selectedCategory,
   handleCategoryChange,
 }) => {
-  const [priceMax, setPriceMax] = useState();
-  const [priceMin, setPriceMin] = useState();
-  const [errorMessage, setErrorMessage] = useState("");
-  const dispatch = useDispatch();
-
-  const [rating, setRating] = useState();
-
-  const handleApply = () => {
-    if (priceMax <= priceMin) {
-      setErrorMessage("Giá không phù hợp");
-    } else {
-      setErrorMessage("");
-      // Dispatch vào đây khi bấm "Áp dụng"
-      dispatch(priceMaxApi(priceMax));
-      dispatch(priceMinApi(priceMin));
-    }
-  };
-  const resetAll = () => {
-    setPriceMax("");
-    setPriceMin("");
-    dispatch(priceMaxApi(""));
-    dispatch(priceMinApi(""));
-    setRating(undefined);
-    handleCategoryChange(null);
-  };
+  const {
+    priceMin,
+    priceMax,
+    setPriceMin,
+    setPriceMax,
+    errorMessage,
+    handleApply,
+    rating,
+    setRating,
+    resetAll,
+  } = useSidebarForHeader(handleCategoryChange);
 
   return (
     <div>
