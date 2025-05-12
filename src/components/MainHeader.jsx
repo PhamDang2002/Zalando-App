@@ -11,6 +11,7 @@ import { useDispatch } from "react-redux";
 
 import { currencyFormatter } from "@libs/utils";
 import { useGetPurchaseQuery } from "@services/rootApi";
+import { searchProduct } from "@redux/slices/authSlice";
 
 const MAX_PURCHASES = 5;
 const MainHeader = () => {
@@ -26,7 +27,9 @@ const MainHeader = () => {
   const status = -1;
 
   const purchasesInCart = useGetPurchaseQuery({ status })?.data?.data;
-  const { triggerResetAll } = useSidebarForHeader(() => {});
+  const { triggerResetAll } = useSidebarForHeader(() => {
+    setSearchTerm(null);
+  });
 
   return (
     <div className="mt-4 grid w-full grid-cols-12 gap-4">
@@ -42,6 +45,7 @@ const MainHeader = () => {
           className="col-span-2"
           onClick={() => {
             triggerResetAll(); // Kích hoạt reset
+            dispatch(searchProduct(undefined));
           }}
         >
           <svg viewBox="0 0 192 65" className="h-11 w-full fill-white">

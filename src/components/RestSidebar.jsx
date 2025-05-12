@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import RatingStars from "./RatingStar";
 
 import { useSidebarForHeader } from "@hooks/index";
+import { useDispatch } from "react-redux";
+import { searchProduct } from "@redux/slices/authSlice";
 
 const RestSidebar = ({
   productList,
@@ -22,7 +24,7 @@ const RestSidebar = ({
   } = useSidebarForHeader(() => {
     handleCategoryChange(null);
   });
-
+  const dispatch = useDispatch();
   return (
     <div>
       <div className="mt-4 h-[1px] bg-gray-300" />
@@ -130,6 +132,7 @@ const RestSidebar = ({
         className="w-full"
         onClick={() => {
           triggerResetAll(); // Kích hoạt reset
+          dispatch(searchProduct(undefined));
         }}
       >
         Xóa tất cả
