@@ -1,4 +1,4 @@
-import { Button, Chip, Stack } from "@mui/material";
+import { Button } from "@mui/material";
 
 import { FormProvider, useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,54 +9,10 @@ import TextInput from "./FormInputs/TextInput";
 import FormField from "./FormField";
 import DateOfBirthInput from "./FormInputs/DateofBird";
 import * as yup from "yup";
-import { useCallback } from "react";
-import { useDropzone } from "react-dropzone";
+
 import { useState } from "react";
 import { openSnackbar } from "@redux/slices/snackbarSlice";
 import { useEffect } from "react";
-const ImageUploader = ({ setImage, image }) => {
-  const onDrop = useCallback(
-    (acceptedFiles) => {
-      setImage(acceptedFiles[0]);
-    },
-    [setImage],
-  );
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({
-    onDrop,
-    multiple: false,
-    maxFiles: 1,
-    accept: ".jpg, .jpeg, .png",
-  });
-
-  return (
-    <div>
-      {image?.name && (
-        <Stack className="mb-2">
-          <Chip
-            label={image.name}
-            onDelete={() => setImage(null)}
-            className="font-bold"
-          ></Chip>
-        </Stack>
-      )}
-      <div
-        {...getRootProps({
-          className:
-            "border rounded py-4 py-6 text-center bg-slate-100 cursor-pointer h-20 flex items-center justify-center ",
-        })}
-      >
-        <input {...getInputProps()} />
-        {isDragActive ? (
-          <p>Drop the files here ...</p>
-        ) : (
-          <p>
-            Drag &apos;n&apos; drop some files here, or click to select files
-          </p>
-        )}
-      </div>
-    </div>
-  );
-};
 
 export default function Profile() {
   const [image, setImage] = useState(null);
@@ -185,7 +141,7 @@ export default function Profile() {
           className="mt-8 flex flex-col-reverse md:flex-row md:items-start"
           onSubmit={handleSubmit(onSubmit)}
         >
-          <div className="mr-3 mt-6 flex-grow md:mt-0 md:border-r md:border-r-gray-200">
+          <div className="mr-3 mt-6 flex-grow md:mt-0">
             <div className="flex flex-col flex-wrap sm:flex-row">
               <FormField
                 name="email"
@@ -240,12 +196,6 @@ export default function Profile() {
                 ) : (
                   <div className="h-full w-full rounded-full bg-gray-300" />
                 )} */}
-              </div>
-              <ImageUploader setImage={setImage} image={image} />
-
-              <div className="mt-3 text-gray-400">
-                <div>Dụng lượng file tối đa 1 MB</div>
-                <div>Định dạng:.JPG, .JPEG, .PNG</div>
               </div>
             </div>
           </div>
