@@ -12,6 +12,8 @@ import {
 } from "@services/rootApi";
 import { useState } from "react";
 import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { openSnackbar } from "@redux/slices/snackbarSlice";
 
 export default function ProductCart() {
   const status = -1;
@@ -21,7 +23,8 @@ export default function ProductCart() {
   const [isAllChecked, setIsAllChecked] = useState(false);
   const [totalPrice, setTotalPrice] = useState(0);
   const [updateProduct] = useUpdatePurchaseMutation();
-  const [buyProduct] = useBuyProductsMutation();
+  const dispatch = useDispatch();
+  const [buyProduct, { data, isSuccess }] = useBuyProductsMutation();
   // Hàm handleCheckboxChange để lấy id khi click vào checkbox
   const handleCheckboxChange = (productId) => {
     setSelectedProducts((prevState) => {
@@ -119,6 +122,11 @@ export default function ProductCart() {
     await buyProduct(selectedProductDetails);
   };
 
+  useEffect(() => {
+    if (isSuccess) {
+      dispatch(openSnackbar({ message: data?.message }));
+    }
+  }, [isSuccess, data, dispatch]);
   return (
     <div className="bg-neutral-100 py-16">
       <div className="px-10">

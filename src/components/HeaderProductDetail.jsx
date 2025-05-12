@@ -36,7 +36,7 @@ const HeaderProductDetail = ({
   useEffect(() => {
     setProductCart(data);
   }, [data, dispatch]);
-  console.log(productCart);
+
   return (
     <div>
       <div className="bg-white p-4 shadow">
@@ -48,7 +48,7 @@ const HeaderProductDetail = ({
               onMouseLeave={handleRemoveZoom}
             >
               <img
-                src={activeImage}
+                src={activeImage || 0}
                 alt={product.name}
                 className="absolute left-0 top-0 h-full w-full bg-white object-cover"
                 ref={imageRef}

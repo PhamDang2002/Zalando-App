@@ -17,7 +17,7 @@ import { useState } from "react";
 import { useMemo } from "react";
 import { useRef } from "react";
 import { useEffect } from "react";
-import { resetAlls } from "@redux/slices/settingsSlice";
+import { triggerReset } from "@redux/slices/settingsSlice";
 
 export const useLogout = () => {
   const dispatch = useDispatch();
@@ -185,31 +185,41 @@ export const useSidebarForHeader = (handleCategoryChange) => {
   const [priceMax, setPriceMax] = useState();
   const [priceMin, setPriceMin] = useState();
   const [errorMessage, setErrorMessage] = useState("");
+  const [rating, setRating] = useState();
   const dispatch = useDispatch();
 
-  const [rating, setRating] = useState();
+  const reset = useSelector((state) => state.settings.reset);
+
+  // Lắng nghe trạng thái reset từ Redux
+  useEffect(() => {
+    if (reset) {
+      // Thực hiện reset
+      setPriceMax("");
+      setPriceMin("");
+      dispatch(priceMaxApi(""));
+      dispatch(priceMinApi(""));
+      setRating(undefined);
+      handleCategoryChange(null);
+
+      // Đặt lại trạng thái reset về false
+      dispatch(triggerReset());
+    }
+  }, [reset, handleCategoryChange, dispatch]);
 
   const handleApply = () => {
     if (priceMax <= priceMin) {
       setErrorMessage("Giá không phù hợp");
     } else {
       setErrorMessage("");
-      // Dispatch vào đây khi bấm "Áp dụng"
       dispatch(priceMaxApi(priceMax));
       dispatch(priceMinApi(priceMin));
     }
   };
-  const resetAll = () => {
-    setPriceMax("");
-    setPriceMin("");
-    dispatch(priceMaxApi(""));
-    dispatch(priceMinApi(""));
-    setRating(undefined);
-    handleCategoryChange(null);
+
+  const triggerResetAll = () => {
+    dispatch(triggerReset()); // Kích hoạt reset
   };
-  useEffect(() => {
-    dispatch(resetAlls(resetAll));
-  });
+
   return {
     priceMax,
     setPriceMax,
@@ -218,7 +228,7 @@ export const useSidebarForHeader = (handleCategoryChange) => {
     errorMessage,
     setErrorMessage,
     handleApply,
-    resetAll,
+    triggerResetAll, // Trả về hàm để kích hoạt reset
     rating,
     setRating,
   };

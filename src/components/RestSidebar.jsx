@@ -18,8 +18,10 @@ const RestSidebar = ({
     handleApply,
     rating,
     setRating,
-    resetAll,
-  } = useSidebarForHeader(handleCategoryChange);
+    triggerResetAll,
+  } = useSidebarForHeader(() => {
+    handleCategoryChange(null);
+  });
 
   return (
     <div>
@@ -69,7 +71,7 @@ const RestSidebar = ({
                 input: { className: "h-8 w-24 px-3 py-2" },
                 htmlInput: { className: "!p-0" },
               }}
-              value={priceMin}
+              value={priceMin || ""}
               onChange={(e) => setPriceMin(e.target.value)}
               type="number"
               placeholder="₫ TỪ"
@@ -90,7 +92,7 @@ const RestSidebar = ({
             <TextField
               type="number"
               placeholder="₫ ĐẾN"
-              value={priceMax}
+              value={priceMax || ""}
               onChange={(e) => setPriceMax(e.target.value)}
               slotProps={{
                 input: { className: "h-8 w-24 px-3 py-2" },
@@ -123,7 +125,13 @@ const RestSidebar = ({
       <div className="text-sm">Đánh giá</div>
       <RatingStars rating={rating} setRating={setRating} />
       <div className="my-4 h-[1px] bg-gray-300" />
-      <Button variant="contained" className="w-full" onClick={resetAll}>
+      <Button
+        variant="contained"
+        className="w-full"
+        onClick={() => {
+          triggerResetAll(); // Kích hoạt reset
+        }}
+      >
         Xóa tất cả
       </Button>
     </div>

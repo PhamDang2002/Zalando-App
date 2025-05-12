@@ -10,7 +10,7 @@ const CartHeader = () => {
         </div>
       </div>
       <div className="bg-white">
-        <div className="">
+        <div>
           <nav className="container md:flex md:items-center md:justify-between">
             <Link to="/" className="flex flex-shrink-0 items-end">
               <div>

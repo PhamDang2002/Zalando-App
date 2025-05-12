@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  isShowDrawer: true,
-  reset: "",
+  isShowDrawer: false,
+  reset: false,
 };
 
 export const settingsSlice = createSlice({
@@ -12,11 +12,11 @@ export const settingsSlice = createSlice({
     toggleDrawer: (state) => {
       state.isShowDrawer = !state.isShowDrawer;
     },
-    resetAlls: (state, action) => {
-      state.reset = action.payload;
+    triggerReset: (state) => {
+      state.reset = !state.reset;
     },
   },
 });
 
-export const { toggleDrawer, resetAlls } = settingsSlice.actions;
+export const { toggleDrawer, triggerReset } = settingsSlice.actions;
 export default settingsSlice.reducer;
