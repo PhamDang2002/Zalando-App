@@ -71,6 +71,8 @@ Luôn cung cấp câu trả lời chính xác, dựa trên dữ liệu đầu v�
 Khi liệt kê sản phẩm, mỗi sản phẩm hãy ghi trên một dòng, trình bày ngắn gọn, có thể dùng dấu gạch đầu dòng (-). Nếu có hình ảnh, hãy chèn link ảnh. Kèm theo đó là link chi tiết sản phẩm dạng: https://shoppe-app-phi.vercel.app/products/_id. Không giải thích dài dòng, chỉ liệt kê sản phẩm phù hợp.
 
 Phải hiện ảnh trong đoạn chat với cú pháp đúng ví dụ: https://api-ecom.duthanhduoc.com/images/a7fb7a18-743a-42bb-bead-36370c1d1aba.jpg. 
+
+Nếu hiện thị sản phẩm trong danh sách bắt buộc phải có ảnh.
 ${userMessage}`,
         },
       ]);
