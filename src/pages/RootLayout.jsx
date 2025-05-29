@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { closeSnackbar } from "@redux/slices/snackbarSlice";
 import Loading from "@components/Loading";
 
+import "@fontsource-variable/inter";
 const RootLayout = () => {
   const { open, message, type } = useSelector((state) => state.snackbar);
   const dispatch = useDispatch();

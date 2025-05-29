@@ -145,7 +145,7 @@ const HeaderProductDetail = ({
                 {currencyFormatter(product.price)}
               </div>
               <div
-                className={`${isMediumLayout ? "hidden" : "ml-4 rounded-sm bg-orange px-1 py-[2px] text-xs font-semibold uppercase text-white"}`}
+                className={`${isMediumLayout ? "hidden" : "ml-4 rounded-sm bg-primary px-1 py-[2px] text-xs font-semibold uppercase text-white"}`}
               >
                 {rateSale(product.price_before_discount, product.price)} giảm
               </div>
@@ -165,7 +165,7 @@ const HeaderProductDetail = ({
             </div>
             <div className="mt-8 flex items-center">
               <button
-                className="flex h-12 items-center justify-center rounded-sm border border-orange bg-orange/10 px-5 capitalize text-orange shadow-sm hover:bg-orange/5"
+                className="flex h-12 items-center justify-center rounded-sm border border-orange bg-primary/10 px-5 capitalize text-orange shadow-sm hover:bg-primary/5"
                 onClick={() => onSubmit({ product_id, buy_count })}
                 disabled={isLoading}
               >
@@ -233,7 +233,7 @@ const HeaderProductDetail = ({
                 )}
                 {isLoading ? "Đang thêm..." : "Thêm vào giỏ hàng"}
               </button>
-              <button className="fkex ml-4 h-12 min-w-[5rem] items-center justify-center rounded-sm bg-orange px-5 capitalize text-white shadow-sm outline-none hover:bg-orange/90">
+              <button className="fkex ml-4 h-12 min-w-[5rem] items-center justify-center rounded-sm bg-primary px-5 capitalize text-white shadow-sm outline-none hover:bg-primary/90">
                 Mua ngay
               </button>
             </div>

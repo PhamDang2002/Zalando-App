@@ -27,7 +27,7 @@ const Pagination = ({ page, setPage, pageSize }) => {
         {fullPage.map((pageNumber) => (
           <a
             key={pageNumber}
-            className={`mx-2 cursor-pointer rounded border ${page === pageNumber ? "bg-orange text-white" : "border-transparent bg-white"} px-3 py-2 shadow-sm`}
+            className={`mx-2 cursor-pointer rounded border ${page === pageNumber ? "bg-primary text-white" : "border-transparent bg-white"} px-3 py-2 shadow-sm`}
             onClick={() => handlePageChange(pageNumber)}
           >
             {pageNumber}

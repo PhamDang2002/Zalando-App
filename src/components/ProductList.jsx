@@ -21,7 +21,7 @@ const ProductList = ({
   return (
     <Link to={`/products/${id}`}>
       <div className="col-span-1">
-        <div className="overflow-hidden rounded-sm bg-white shadow transition-transform duration-100 hover:translate-y-[-0.04rem] hover:shadow-md">
+        <div className="h-[33vh] overflow-hidden rounded-sm bg-white shadow transition-transform duration-100 hover:translate-y-[-0.04rem] hover:shadow-md">
           <div className="relative w-full pt-[100%]">
             <img
               src={image}

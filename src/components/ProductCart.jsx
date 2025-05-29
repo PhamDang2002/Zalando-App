@@ -290,7 +290,7 @@ export default function ProductCart() {
             <div className="mt-5 text-center">
               <Link
                 to="/"
-                className="rounded-sm bg-orange px-10 py-2 uppercase text-white transition-all hover:bg-orange/80"
+                className="rounded-sm bg-primary px-10 py-2 uppercase text-white transition-all hover:bg-primary/80"
               >
                 Mua ngay
               </Link>

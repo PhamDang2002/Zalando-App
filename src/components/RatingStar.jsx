@@ -24,7 +24,7 @@ export default function RatingStars({ rating, setRating }) {
         .map((_, index) => (
           <li className="py-1 pl-2" key={index}>
             <div
-              className={`flex cursor-pointer ${rating === 5 - index && "bg-orange text-white"} items-center text-sm`}
+              className={`flex cursor-pointer ${rating === 5 - index && "bg-primary text-white"} items-center text-sm`}
               onClick={() => handleFilterStar(5 - index)}
               tabIndex={0}
               role="button"

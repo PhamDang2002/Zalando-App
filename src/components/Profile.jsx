@@ -176,7 +176,7 @@ export default function Profile() {
               <div className="sm:w-[80%] sm:pl-5">
                 <Button
                   variant="contained"
-                  className="flex h-9 items-center rounded-sm bg-orange px-5 text-center text-sm text-white hover:bg-orange/80"
+                  className="flex h-9 items-center rounded-sm bg-primary px-5 text-center text-sm text-white hover:bg-primary/80"
                   type="submit"
                 >
                   Lưu

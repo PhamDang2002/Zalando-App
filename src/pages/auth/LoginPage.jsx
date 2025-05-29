@@ -8,7 +8,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useLoginMutation } from "../../services/rootApi";
 import { useEffect } from "react";
 import { openSnackbar } from "../../redux/slices/snackbarSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { login as loginAction } from "../../redux/slices/authSlice";
 
 const LoginPage = () => {
@@ -16,7 +16,8 @@ const LoginPage = () => {
   const dispatch = useDispatch();
   const [login, { isLoading, data = {}, error, isSuccess, isError }] =
     useLoginMutation();
-
+  const preventLogin = useSelector((store) => store?.auth?.access_token);
+  console.log(preventLogin);
   const formSchema = yup.object().shape({
     email: yup
       .string()

@@ -34,7 +34,7 @@ const ProductType = ({ setPage, page, pageSize }) => {
           <div>Sắp xếp theo</div>
           <button
             className={`h-8 px-4 text-center text-sm capitalize ${
-              sortType === "createdAt" ? "bg-orange text-white" : "bg-white"
+              sortType === "createdAt" ? "bg-primary text-white" : "bg-white"
             }`}
             onClick={() => setSortType("createdAt")}
           >
@@ -42,7 +42,7 @@ const ProductType = ({ setPage, page, pageSize }) => {
           </button>
           <button
             className={`h-8 px-4 text-center text-sm capitalize ${
-              sortType === "view" ? "bg-orange text-white" : "bg-white"
+              sortType === "view" ? "bg-primary text-white" : "bg-white"
             }`}
             onClick={() => setSortType("view")}
           >
@@ -50,14 +50,14 @@ const ProductType = ({ setPage, page, pageSize }) => {
           </button>
           <button
             className={`h-8 px-4 text-center text-sm capitalize ${
-              sortType === "sold" ? "bg-orange text-white" : "bg-white"
+              sortType === "sold" ? "bg-primary text-white" : "bg-white"
             }`}
             onClick={() => setSortType("sold")}
           >
             Bán chạy
           </button>
           <select
-            className={`h-8 px-4 text-left ${orderType ? "bg-orange text-white" : "bg-white"} text-sm capitalize outline-none`}
+            className={`h-8 px-4 text-left ${orderType ? "bg-primary text-white" : "bg-white"} text-sm capitalize outline-none`}
             onChange={handleSortChange} // sử dụng onChange thay vì onClick
           >
             <option value="default" className="bg-white text-black">
