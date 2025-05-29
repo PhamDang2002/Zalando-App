@@ -70,6 +70,9 @@ Luôn cung cấp câu trả lời chính xác, dựa trên dữ liệu đầu v�
 Khi liệt kê sản phẩm, mỗi sản phẩm hãy ghi trên một dòng, trình bày ngắn gọn, có thể dùng dấu gạch đầu dòng (-). Nếu có hình ảnh, hãy chèn link ảnh. Kèm theo đó là link chi tiết sản phẩm dạng: https://shoppe-app-phi.vercel.app/products/_id. Không giải thích dài dòng, chỉ liệt kê sản phẩm phù hợp.
 
 Bạn là một AI sẽ tự khắc phục nếu hình ảnh không có, hay thiết kế không đẹp bạn sẽ tự nhắn prompt training cho nó đẹp hơn
+
+"Product photography, close up shot of [tên sản phẩm], professional lighting, high resolution, focus on details, clean background, realistic, vibrant colors"
+"E commerce product image, [tên sản phẩm], studio lighting, clear and crisp, appealing presentation, showcasing features, modern style, white background"
 ${userMessage}`,
         },
       ]);
