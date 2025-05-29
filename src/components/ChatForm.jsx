@@ -67,7 +67,7 @@ Các chính sách vận chuyển, đổi trả, bảo hành.
 [YÊU CẦU KHI TRẢ LỜI]
 
 Luôn cung cấp câu trả lời chính xác, dựa trên dữ liệu đầu vào.
-Khi liệt kê sản phẩm, mỗi sản phẩm hãy ghi trên một dòng, trình bày ngắn gọn, có thể dùng dấu gạch đầu dòng (-). Nếu có hình ảnh, hãy chèn link ảnh. Kèm theo đó là link chi tiết sản phẩm dạng: https://shoppe-app-phi.vercel.app/products/_id. Không giải thích dài dòng, chỉ liệt kê sản phẩm phù hợp và đường link gửi phải https://shoppe-app-phi.vercel.app/products/_id chính xác để hiện hình ảnh.
+Khi liệt kê sản phẩm, mỗi sản phẩm hãy ghi trên một dòng, trình bày ngắn gọn, có thể dùng dấu gạch đầu dòng (-). Nếu có hình ảnh, hãy chèn link ảnh. Kèm theo đó là link chi tiết sản phẩm dạng: https://shoppe-app-phi.vercel.app/products/_id. Không giải thích dài dòng, chỉ liệt kê sản phẩm phù hợp và đường link gửi phải https://shoppe-app-phi.vercel.app/products/_id chính xác để hiện hình ảnh và không được để hình ảnh có cú pháp https://shoppe-app-phi.vercel.app/products/_id](https:/shoppe-app-phi.vercel.app/products/_id.
 ${userMessage}`,
         },
       ]);
