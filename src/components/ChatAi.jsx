@@ -22,7 +22,7 @@ const ChatAi = () => {
           text: data.data.products
             .map(
               (product) =>
-                `- ${product?.name} - ${product?.price}đ - ${product?.image || ""} - ${product?.rating || ""}sao - ${product?._id || ""} -`,
+                `- ${product?.name} - ${product?.price}đ - ${product?.image} - ${product?.rating || ""}sao - ${product?._id || ""} -`,
             )
             .join("\n"),
         },
@@ -170,7 +170,7 @@ const ChatAi = () => {
                             /https?:\/\/localhost:5173\/products\/[a-zA-Z0-9]+/gi,
                             "",
                           )
-                          .replace(/^\s*[\*\-]\s*/g, "") // Xóa dấu * hoặc - ở đầu dòng
+                          .replace(/^\s*[*-]\s*/g, "") // Xóa dấu * hoặc - ở đầu dòng
                           .replace(/\[Hình ảnh\]\(\)/gi, "") // Xóa [Hình ảnh]()
                           .replace(/\[Chi tiết\]\(\)/gi, "") // Xóa [Chi tiết]()
                           .replace(/\[Ảnh\]\(\)/gi, "") // Xóa [Chi tiết]()
