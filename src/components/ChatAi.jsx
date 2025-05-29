@@ -110,7 +110,7 @@ const ChatAi = () => {
           <div className="flex items-center gap-2">
             <ChatbotIcon className="h-[35px] w-[35px] flex-shrink-0 rounded-full bg-white fill-primary p-2" />
             <h2 className="cursor-pointer p-2 font-bold text-white">
-              Shoppe AI
+              Chatbot AI
             </h2>
           </div>
           <IconButton
