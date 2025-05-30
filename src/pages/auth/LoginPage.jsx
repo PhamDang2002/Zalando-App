@@ -98,7 +98,7 @@ const LoginPage = () => {
       </form>
       <p className="mt-4">
         New on our platform?{" "}
-        <Link className="text-[#F87171]" to="/register">
+        <Link className="text-primary" to="/register">
           Create an account
         </Link>
       </p>

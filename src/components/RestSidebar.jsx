@@ -34,7 +34,7 @@ const RestSidebar = ({
             {productList?.map((product) => (
               <Link
                 key={product._id}
-                className={`mb-2 ${selectedCategory === product._id ? "font-bold text-orange" : "text-black"}`}
+                className={`mb-2 ${selectedCategory === product._id ? "font-bold text-primary" : "text-black"}`}
                 onClick={() => handleCategoryChange(product._id)} // gọi hàm khi click
               >
                 {product.name}
@@ -114,7 +114,7 @@ const RestSidebar = ({
               }}
             />
           </div>
-          <div className="mt-1 min-h-[1.25rem] text-center text-sm text-red-600">
+          <div className="mt-1 min-h-[1.25rem] text-center text-sm text-primary">
             {errorMessage}
           </div>
 

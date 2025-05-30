@@ -219,7 +219,7 @@ export default function ProductCart() {
                             />
                           </div>
                           <div className="col-span-1">
-                            <span className="text-orange">
+                            <span className="text-primary">
                               {currencyFormatter(
                                 purchase?.product?.price * purchase?.buy_count,
                               )}
@@ -227,7 +227,7 @@ export default function ProductCart() {
                           </div>
                           <div className="col-span-1">
                             <button
-                              className="bg-none text-black transition-colors hover:text-orange"
+                              className="bg-none text-black transition-colors hover:text-primary"
                               onClick={() => handleDelete(purchase._id)}
                             >
                               Xóa
@@ -266,7 +266,7 @@ export default function ProductCart() {
               <div>
                 <div className="flex items-center sm:justify-end">
                   <div>Tổng thanh toán</div>
-                  <div className="mx-2 text-2xl text-orange">
+                  <div className="mx-2 text-2xl text-primary">
                     {currencyFormatter(totalPrice)}
                   </div>
                 </div>

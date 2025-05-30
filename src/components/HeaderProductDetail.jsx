@@ -122,12 +122,12 @@ const HeaderProductDetail = ({
             </h1>
             <div className="mt-8 flex items-center">
               <div className="flex items-center">
-                <span className="mr-1 border-b border-b-orange text-orange">
+                <span className="mr-1 border-b border-b-orange text-primary">
                   {product.rating}
                 </span>
                 <ProductRating
                   star={product.rating}
-                  activeClassname="fill-orange text-orange h-4 w-4"
+                  activeClassname="fill-orange text-primary h-4 w-4"
                   nonActiveClassname="fill-gray-300 text-gray-300 h-4 w-4"
                 />
               </div>
@@ -141,7 +141,7 @@ const HeaderProductDetail = ({
               <div className="text-gray-500 line-through">
                 {currencyFormatter(product.price_before_discount)}
               </div>
-              <div className="ml-3 text-3xl font-medium text-orange">
+              <div className="ml-3 text-3xl font-medium text-primary">
                 {currencyFormatter(product.price)}
               </div>
               <div
@@ -165,13 +165,13 @@ const HeaderProductDetail = ({
             </div>
             <div className="mt-8 flex items-center">
               <button
-                className="flex h-12 items-center justify-center rounded-sm border border-orange bg-primary/10 px-5 capitalize text-orange shadow-sm hover:bg-primary/5"
+                className="flex h-12 items-center justify-center rounded-sm border border-orange bg-primary/10 px-5 capitalize text-primary shadow-sm hover:bg-primary/5"
                 onClick={() => onSubmit({ product_id, buy_count })}
                 disabled={isLoading}
               >
                 {isLoading ? (
                   <svg
-                    className="mr-[10px] h-5 w-5 animate-spin text-orange"
+                    className="mr-[10px] h-5 w-5 animate-spin text-primary"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -196,7 +196,7 @@ const HeaderProductDetail = ({
                     viewBox="0 0 15 15"
                     x={0}
                     y={0}
-                    className="mr-[10px] h-5 w-5 fill-current stroke-orange text-orange"
+                    className="mr-[10px] h-5 w-5 fill-current stroke-orange text-primary"
                   >
                     <g>
                       <g>

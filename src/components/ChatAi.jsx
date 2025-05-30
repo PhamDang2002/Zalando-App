@@ -129,7 +129,7 @@ const ChatAi = () => {
               <ChatbotIcon className="h-[35px] w-[35px] flex-shrink-0 rounded-full bg-primary fill-white p-2" />
               <p className="max-w-[75%] px-[16px] py-[12px]">
                 Xin chào <br />
-                Tôi là Shoppe AI, tôi có thể giúp gì cho bạn?
+                Tôi là Zalando, tôi có thể giúp gì cho bạn?
               </p>
             </div>
 
@@ -150,7 +150,7 @@ const ChatAi = () => {
                     <ChatbotIcon className="h-[35px] w-[35px] flex-shrink-0 rounded-full bg-primary fill-white p-2" />
                     <div
                       className={`max-w-[75%] rounded-lg px-[16px] py-[12px] ${
-                        message.isError ? "text-red-500" : "text-black"
+                        message.isError ? "text-primary" : "text-black"
                       }`}
                     >
                       {/* Hiển thị từng dòng sản phẩm đẹp hơn */}

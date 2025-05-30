@@ -21,7 +21,7 @@ const ProductList = ({
   return (
     <Link to={`/products/${id}`}>
       <div className="col-span-1">
-        <div className="h-[33vh] overflow-hidden rounded-sm bg-white shadow transition-transform duration-100 hover:translate-y-[-0.04rem] hover:shadow-md">
+        <div className="overflow-hidden rounded-sm bg-white shadow transition-transform duration-100 hover:translate-y-[-0.04rem] hover:shadow-md">
           <div className="relative w-full pt-[100%]">
             <img
               src={image}
@@ -36,7 +36,7 @@ const ProductList = ({
                   {currencyFormatter(price_before_discount)}
                 </span>
               </div>
-              <div className="ml-1 truncate text-orange">
+              <div className="ml-1 truncate text-primary">
                 <span className="text-sm">{currencyFormatter(price)}</span>
               </div>
             </div>

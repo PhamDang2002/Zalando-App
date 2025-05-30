@@ -84,7 +84,7 @@ const SideBarContent = ({ page, setPage }) => {
       )}
       <Link to="/">
         <div
-          className={`flex font-bold ${selectedCategory === null ? "text-red-500" : "text-black"}`}
+          className={`flex font-bold ${selectedCategory === null ? "text-primary" : "text-black"}`}
           onClick={handleResetFilters}
         >
           <svg viewBox="0 0 12 10" className="mr-3 h-4 w-3 fill-current">

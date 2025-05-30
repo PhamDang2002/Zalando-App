@@ -45,7 +45,7 @@ export default function UserProfile() {
           to="/user/profile"
           className={({ isActive }) =>
             classNames("flex items-center capitalize transition-colors", {
-              "text-orange": isActive,
+              "text-primary": isActive,
               "text-gray-600": !isActive,
             })
           }
@@ -63,7 +63,7 @@ export default function UserProfile() {
           to="/user/password"
           className={({ isActive }) =>
             classNames("mt-4 flex items-center capitalize transition-colors", {
-              "text-orange": isActive,
+              "text-primary": isActive,
               "text-gray-600": !isActive,
             })
           }
@@ -81,7 +81,7 @@ export default function UserProfile() {
           to="/user/purchase"
           className={({ isActive }) =>
             classNames("mt-4 flex items-center capitalize transition-colors", {
-              "text-orange": isActive,
+              "text-primary": isActive,
               "text-gray-600": !isActive,
             })
           }

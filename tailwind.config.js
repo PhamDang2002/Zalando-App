@@ -12,7 +12,7 @@ export default {
           200: "#F8F7FA",
         },
         orange: "#ee4d2d",
-        primary: "#f12267",
+        primary: "#003366",
       },
     },
   },
