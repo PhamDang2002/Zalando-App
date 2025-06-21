@@ -191,7 +191,7 @@ const ChatAi = () => {
                         );
                         const productId = detailMatch ? detailMatch[1] : null;
                         const productLink = productId
-                          ? `http://localhost:5173/products/${productId}`
+                          ? `https://shoppe-app-phi.vercel.app/products/${productId}`
                           : null;
 
                         // Tìm tên sản phẩm
