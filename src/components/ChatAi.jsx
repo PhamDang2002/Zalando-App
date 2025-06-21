@@ -166,29 +166,61 @@ const ChatAi = () => {
                         message.isError ? "text-primary" : "text-black"
                       }`}
                     >
+                      {/* Thêm dòng thông báo nếu có sản phẩm */}
+                      {message.text.match(/Giá:|Đánh giá:/) && (
+                        <div style={{ fontWeight: "bold", marginBottom: 8 }}>
+                          Dưới đây là danh sách sản phẩm theo yêu cầu của bạn:
+                        </div>
+                      )}
                       {/* Hiển thị từng dòng sản phẩm đẹp hơn */}
                       {message.text.split("\n").map((line, i) => {
-                        // Tìm link ảnh và link sản phẩm trong từng dòng
-                        const imgMatch = line.match(
-                          /https?:\/\/.*\.(?:png|jpg|jpeg|gif)/gi,
-                        );
-                        const linkMatch = line.match(
-                          /https?:\/\/[^\s]+\/products\/[a-zA-Z0-9]+/gi,
-                        );
-                        // Lấy phần text trước link
+                        // Tìm id sản phẩm từ [Xem chi tiết](id)
+                        if (line.trim() === "Đang tìm kiếm...") {
+                          return (
+                            <div
+                              key={i}
+                              style={{ fontStyle: "italic", color: "#888" }}
+                            >
+                              Đang tìm kiếm...
+                            </div>
+                          );
+                        }
 
-                        const textOnly = line
-                          .replace(/https?:\/\/.*\.(?:png|jpg|jpeg|gif)/gi, "")
-                          .replace(
-                            /https?:\/\/localhost:5173\/products\/[a-zA-Z0-9]+/gi,
-                            "",
-                          )
-                          .replace(/^\s*[*-]\s*/g, "") // Xóa dấu * hoặc - ở đầu dòng
-                          .replace(/\[Hình ảnh\]\(\)/gi, "") // Xóa [Hình ảnh]()
-                          .replace(/\[Chi tiết\]\(\)/gi, "") // Xóa [Chi tiết]()
-                          .replace(/\[Ảnh\]\(\)/gi, "") // Xóa [Chi tiết]()
-                          .replace(/\s*-\s*/g, " ") // Xóa dấu - giữa các trường
-                          .trim();
+                        const detailMatch = line.match(
+                          /\[Xem chi tiết\]\(([^)]+)\)/i,
+                        );
+                        const productId = detailMatch ? detailMatch[1] : null;
+                        const productLink = productId
+                          ? `http://localhost:5173/products/${productId}`
+                          : null;
+
+                        // Tìm tên sản phẩm
+                        const nameMatch = line.match(/\|\s*([^\|]+)\s*\|/);
+                        const productName = nameMatch
+                          ? nameMatch[1].trim()
+                          : "";
+
+                        // Tìm giá
+                        const priceMatch = line.match(/Giá:\s*([0-9.,]+)đ/);
+                        const price = priceMatch ? priceMatch[1] : "";
+
+                        // Tìm đánh giá
+                        const ratingMatch = line.match(
+                          /Đánh giá:\s*([0-9.]+)⭐/,
+                        );
+                        const rating = ratingMatch ? ratingMatch[1] : "";
+
+                        // Nếu thiếu tên hoặc giá thì bỏ qua dòng này
+                        if (!productName || !price) return null;
+
+                        // Lấy ảnh sản phẩm từ data theo productId
+                        let image = "";
+                        if (productId && data?.data?.products) {
+                          const found = data.data.products.find(
+                            (p) => p._id === productId,
+                          );
+                          image = found?.image || "";
+                        }
 
                         return (
                           <div
@@ -202,63 +234,69 @@ const ChatAi = () => {
                               width: 320,
                             }}
                           >
-                            {imgMatch ? (
-                              linkMatch ? (
-                                <a
-                                  href={linkMatch[0]}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  style={{
-                                    display: "inline-block",
-                                  }}
-                                >
-                                  <img
-                                    src={imgMatch[0]}
-                                    alt="product"
-                                    style={{
-                                      width: 270,
-                                      height: 100,
-
-                                      objectFit: "cover",
-                                      borderRadius: 8,
-
-                                      background: "#f3f3f3",
-                                    }}
-                                  />
-                                </a>
-                              ) : (
+                            {productLink ? (
+                              <a
+                                href={productLink}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                style={{
+                                  display: "inline-block",
+                                  textDecoration: "none",
+                                  color: "black",
+                                }}
+                              >
                                 <img
-                                  src={imgMatch[0]}
-                                  alt="product"
+                                  src={image}
+                                  alt={productName}
                                   style={{
                                     width: 80,
                                     height: 80,
-                                    objectFit: "cover",
+                                    objectFit: "contain", // Sửa từ "cover" thành "contain"
                                     borderRadius: 8,
                                     marginBottom: 8,
                                     background: "#f3f3f3",
+                                    display: "block",
+                                    boxShadow: "0 1px 4px #0001",
+                                  }}
+                                  onError={(e) => {
+                                    e.target.onerror = null;
+                                    e.target.src =
+                                      "https://via.placeholder.com/80x80?text=No+Image";
                                   }}
                                 />
-                              )
+                              </a>
                             ) : null}
                             <div style={{ textAlign: "start" }}>
-                              {textOnly &&
-                                (linkMatch ? (
-                                  <a
-                                    href={linkMatch[0]}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    style={{
-                                      color: "black",
-                                      fontWeight: "normal",
-                                      textDecoration: "none",
-                                    }}
-                                  >
-                                    {textOnly}
-                                  </a>
-                                ) : (
-                                  <span>{textOnly}</span>
-                                ))}
+                              {productLink ? (
+                                <a
+                                  href={productLink}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  style={{
+                                    color: "black",
+                                    fontWeight: "normal",
+                                    textDecoration: "none",
+                                  }}
+                                >
+                                  <span style={{ fontWeight: "bold" }}>
+                                    {productName}
+                                  </span>
+                                  <br />
+                                  Giá: {price}đ
+                                  <br />
+                                  Đánh giá: {rating}⭐
+                                </a>
+                              ) : (
+                                <span>
+                                  <span style={{ fontWeight: "bold" }}>
+                                    {productName}
+                                  </span>
+                                  <br />
+                                  Giá: {price}đ
+                                  <br />
+                                  Đánh giá: {rating}⭐
+                                </span>
+                              )}
                             </div>
                           </div>
                         );
