@@ -95,6 +95,7 @@ ${userMessage}`,
         required
       />
       <IconButton
+        onClick={handleFormSubmit}
         className={`!bg-primary !text-white ${!isChat ? "opacity-50" : ""}`}
       >
         <KeyboardArrowUp className="" />

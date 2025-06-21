@@ -105,6 +105,15 @@ const ChatAi = () => {
         className={`fixed bottom-4 right-4 z-[101] w-[420px] flex-col overflow-hidden rounded-[15px] bg-[#fff] shadow-lg transition-all duration-300 ${
           showChatbot ? "flex" : "hidden"
         }`}
+        style={{
+          width: "90vw",
+          maxWidth: 420,
+          minWidth: 280,
+          right: "1rem",
+          bottom: "1rem",
+          height: "80vh",
+          maxHeight: 600,
+        }}
       >
         <div className="flex items-center justify-between border-b bg-primary px-[22px] py-[15px]">
           <div className="flex items-center gap-2">
@@ -120,10 +129,14 @@ const ChatAi = () => {
             <ExpandMore />
           </IconButton>
         </div>
-        <div className="flex h-[520px] flex-col">
+        <div
+          className="flex h-[520px] flex-col"
+          style={{ height: "calc(80vh - 60px)", minHeight: 350 }}
+        >
           <div
             ref={chatBodyRef}
-            className="flex flex-1 flex-col gap-4 overflow-y-auto p-[20px] pb-[72px]"
+            className="flex flex-1 flex-col gap-4 overflow-y-auto p-[10px] pb-[72px]"
+            style={{ fontSize: 15 }}
           >
             <div className="flex items-center gap-3">
               <ChatbotIcon className="h-[35px] w-[35px] flex-shrink-0 rounded-full bg-primary fill-white p-2" />
