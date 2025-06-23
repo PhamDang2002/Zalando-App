@@ -12,7 +12,7 @@ const CartHeader = () => {
       <div className="bg-white">
         <div>
           <nav className="container md:flex md:items-center md:justify-between">
-            <Link to="/" className="flex flex-shrink-0 items-end items-center">
+            <Link to="/" className="flex flex-shrink-0 items-end">
               <div>
                 <svg
                   width={132}

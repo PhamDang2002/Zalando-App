@@ -29,33 +29,81 @@ function HomePage() {
   }, [page, dispatch, pageSize]);
 
   return (
-    <div className="container flex gap-4 p-8">
-      <Sidebar page={page} setPage={setPage} pageSize={pageSize} />
-      <div className="flex-1">
-        <ProductType setPage={setPage} page={page} pageSize={pageSize} />
+    <div className="min-h-screen bg-gradient-to-br from-neutral-50 to-neutral-100">
+      {/* Main Content */}
 
-        <div className="mt-6 grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-          {data?.products &&
-            data.products.map((item) => (
-              <ProductList
-                key={item._id}
-                id={item._id}
-                image={item.image}
-                name={item.name}
-                price={item.price}
-                price_before_discount={item.price_before_discount}
-                star={item.rating}
-                sold={item.sold}
-              />
-            ))}
+      <div className="container mx-auto px-6 py-8">
+        <div className="flex gap-8">
+          {/* Sidebar */}
+          <div className="w-64 flex-shrink-0">
+            <Sidebar page={page} setPage={setPage} pageSize={pageSize} />
+          </div>
+
+          {/* Main Content */}
+          <div className="flex-1">
+            {/* Product Type Filter */}
+            <div className="mb-8">
+              <ProductType setPage={setPage} page={page} pageSize={pageSize} />
+            </div>
+
+            {/* Products Grid */}
+            <div className="mb-8">
+              {data?.products && data.products.length > 0 ? (
+                <div className="grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+                  {data.products.map((item) => (
+                    <ProductList
+                      key={item._id}
+                      id={item._id}
+                      image={item.image}
+                      name={item.name}
+                      price={item.price}
+                      price_before_discount={item.price_before_discount}
+                      star={item.rating}
+                      sold={item.sold}
+                    />
+                  ))}
+                </div>
+              ) : (
+                <div className="py-16 text-center">
+                  <div className="mx-auto mb-6 flex h-24 w-24 items-center justify-center rounded-full bg-neutral-200">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth={1.5}
+                      stroke="currentColor"
+                      className="h-12 w-12 text-neutral-400"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5m8.25 3v6.75m0 0l-3-3m3 3l3-3M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"
+                      />
+                    </svg>
+                  </div>
+                  <h3 className="mb-2 text-xl font-semibold text-neutral-700">
+                    Không tìm thấy sản phẩm
+                  </h3>
+                  <p className="text-neutral-500">
+                    Hãy thử thay đổi bộ lọc hoặc tìm kiếm với từ khóa khác
+                  </p>
+                </div>
+              )}
+            </div>
+
+            {/* Pagination */}
+            {data?.products && data.products.length > 0 && (
+              <div className="flex justify-center">
+                <Pagination
+                  page={page}
+                  setPage={setPage}
+                  pageSize={pageSize}
+                  onClick={() => handlePageChange(page)}
+                />
+              </div>
+            )}
+          </div>
         </div>
-
-        <Pagination
-          page={page}
-          setPage={setPage}
-          pageSize={pageSize}
-          onClick={() => handlePageChange(page)}
-        />
       </div>
     </div>
   );

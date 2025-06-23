@@ -60,11 +60,14 @@ const LoginPage = () => {
         const loginData = {
           access_token: data.data.access_token,
           refresh_token: data.data.refresh_token,
+          userInfo: data.data.user,
         };
 
         // Dispatch login action từ slice
+
         dispatch(loginAction(loginData)); // dispatch chính xác login action
       }
+
       navigate("/", {
         email: getValues("email"),
       });

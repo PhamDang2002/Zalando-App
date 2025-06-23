@@ -7,7 +7,7 @@ import { Navigate, Outlet } from "react-router-dom";
 const ProtectedLayout = () => {
   const response = useGetMeQuery();
   const dispatch = useDispatch();
-
+  console.log(response);
   useEffect(() => {
     if (response.isSuccess) {
       dispatch(saveUserInfo(response.data?.data));

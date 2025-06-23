@@ -1,4 +1,4 @@
-import { Button, Input } from "@mui/material";
+import { Button } from "@mui/material";
 import { useUpdateUserMutation } from "@services/rootApi";
 
 import FormField from "./FormField";
@@ -6,6 +6,7 @@ import TextInput from "./FormInputs/TextInput";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
+
 export default function ChangePassword() {
   const [updateUser] = useUpdateUserMutation();
 
@@ -39,63 +40,97 @@ export default function ChangePassword() {
     updateUser(formData).unwrap();
   };
   return (
-    <div className="rounded-sm bg-white px-2 pb-10 shadow md:px-7 md:pb-20">
-      <div className="border-b border-b-gray-200 py-6">
-        <h1 className="text-lg font-medium capitalize text-gray-900">
-          Đổi mật khẩu
-        </h1>
-        <div className="mt-1 text-sm text-gray-700">
+    <div className="card shadow-large animate-fade-in mx-auto mt-10 max-w-xl rounded-3xl bg-white p-8 md:p-12">
+      <div className="mb-8 border-b border-neutral-100 pb-4">
+        <h1 className="text-gradient mb-1 text-2xl font-bold">Đổi mật khẩu</h1>
+        <div className="text-sm text-neutral-500">
           Quản lý thông tin hồ sơ để bảo mật tài khoản
         </div>
       </div>
-      <form
-        className="mr-auto mt-8 max-w-2xl"
-        onSubmit={handleSubmit(handleChangePassword)}
-      >
-        <div className="mt-6 flex-grow md:mt-0 md:pr-12">
-          <div className="mt-2 flex flex-col flex-wrap sm:flex-row">
-            <FormField
-              name="password"
-              label="Password"
-              control={control}
-              type="password"
-              Component={TextInput}
-              error={errors["password"]}
-            />
-          </div>
-          <div className="mt-2 flex flex-col flex-wrap sm:flex-row">
-            <FormField
-              name="new_password"
-              label="New Password"
-              control={control}
-              type="password"
-              Component={TextInput}
-              error={errors["new_password"]}
-            />
-          </div>
-          <div className="mt-2 flex flex-col flex-wrap sm:flex-row">
-            <FormField
-              name="confirm_password"
-              label="Confirm Password"
-              control={control}
-              type="password"
-              Component={TextInput}
-              error={errors["confirm_password"]}
-            />
-          </div>
-          <div className="mt-2 flex flex-col flex-wrap sm:flex-row">
-            <div className="truncate pt-3 capitalize sm:w-[20%] sm:text-right" />
-            <div className="sm:w-[80%] sm:pl-5">
-              <Button
-                variant="contained"
-                className="flex h-9 items-center rounded-sm bg-primary px-5 text-center text-sm text-white hover:bg-primary/80"
-                type="submit"
-                onClick={handleChangePassword}
-              >
-                Lưu
-              </Button>
-            </div>
-          </div>
+      <form className="space-y-6" onSubmit={handleSubmit(handleChangePassword)}>
+        <FormField
+          name="password"
+          label="Mật khẩu hiện tại"
+          control={control}
+          type="password"
+          Component={TextInput}
+          error={errors["password"]}
+          inputClassName="input-modern pr-10"
+          labelClassName="font-semibold text-neutral-700"
+          icon={
+            <svg
+              className="absolute right-3 top-1/2 h-5 w-5 -translate-y-1/2 text-neutral-400"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth={2}
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M12 15v2m0-6v2m-6 4V7a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 01-2 2H6a2 2 0 01-2-2z"
+              />
+            </svg>
+          }
+        />
+        <FormField
+          name="new_password"
+          label="Mật khẩu mới"
+          control={control}
+          type="password"
+          Component={TextInput}
+          error={errors["new_password"]}
+          inputClassName="input-modern pr-10"
+          labelClassName="font-semibold text-neutral-700"
+          icon={
+            <svg
+              className="absolute right-3 top-1/2 h-5 w-5 -translate-y-1/2 text-neutral-400"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth={2}
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M12 15v2m0-6v2m-6 4V7a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 01-2 2H6a2 2 0 01-2-2z"
+              />
+            </svg>
+          }
+        />
+        <FormField
+          name="confirm_password"
+          label="Xác nhận mật khẩu mới"
+          control={control}
+          type="password"
+          Component={TextInput}
+          error={errors["confirm_password"]}
+          inputClassName="input-modern pr-10"
+          labelClassName="font-semibold text-neutral-700"
+          icon={
+            <svg
+              className="absolute right-3 top-1/2 h-5 w-5 -translate-y-1/2 text-neutral-400"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth={2}
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M12 15v2m0-6v2m-6 4V7a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 01-2 2H6a2 2 0 01-2-2z"
+              />
+            </svg>
+          }
+        />
+        <div className="flex justify-end">
+          <Button
+            variant="contained"
+            className="btn-primary shadow-glow rounded-xl px-8 py-3 text-base"
+            type="submit"
+          >
+            Lưu thay đổi
+          </Button>
         </div>
       </form>
     </div>
