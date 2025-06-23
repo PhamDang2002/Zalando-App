@@ -43,11 +43,10 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
           result = await baseQuery(args, api, extraOptions);
         } else {
           api.dispatch(logout());
-          window.location.href = "/login";
         }
       }
     } else {
-      window.location.href = "/login";
+      api.dispatch(logout());
     }
   }
   return result;

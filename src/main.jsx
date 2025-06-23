@@ -23,6 +23,7 @@ const ChangePassword = lazy(() => import("@components/ChangePassword"));
 const ProductCart = lazy(() => import("@components/ProductCart"));
 const CartLayout = lazy(() => import("@pages/CartLayout"));
 const ProtectedLayout = lazy(() => import("@pages/ProtectedLayout"));
+const PublicLayout = lazy(() => import("@pages/PublicLayout"));
 
 import Loading from "@components/Loading";
 
@@ -30,8 +31,9 @@ const router = createBrowserRouter([
   {
     element: <RootLayout />,
     children: [
+      // Public routes - accessible without authentication
       {
-        element: <ProtectedLayout />,
+        element: <PublicLayout />,
         children: [
           {
             path: "/",
@@ -41,7 +43,13 @@ const router = createBrowserRouter([
             path: "/products/:id",
             element: <ProductDetail />,
           },
+        ],
+      },
 
+      // Protected routes - require authentication
+      {
+        element: <ProtectedLayout />,
+        children: [
           {
             element: <UserLayout />,
             children: [

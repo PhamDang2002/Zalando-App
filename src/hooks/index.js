@@ -24,7 +24,7 @@ export const useLogout = () => {
   const navigate = useNavigate();
   const logOut = () => {
     dispatch(logout());
-    navigate("/login", { replace: true });
+    navigate("/", { replace: true });
   };
   return { logOut };
 };

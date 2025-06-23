@@ -6,7 +6,6 @@ export const logOutMiddleware = () => {
     return (action) => {
       if (action.type === logout.type) {
         persistor.purge();
-        window.location.href = "/login";
       }
       return next(action);
     };

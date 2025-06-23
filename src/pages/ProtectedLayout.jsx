@@ -1,6 +1,3 @@
-import ChatAi from "@components/ChatAi";
-import Header from "@components/Header";
-
 import { saveUserInfo } from "@redux/slices/authSlice";
 import { useGetMeQuery } from "@services/rootApi";
 import { useEffect } from "react";
@@ -22,12 +19,6 @@ const ProtectedLayout = () => {
       return <Navigate to="/login" />;
     }
   }
-  return (
-    <div>
-      <Header />
-      <Outlet />
-      <ChatAi />
-    </div>
-  );
+  return <Outlet />;
 };
 export default ProtectedLayout;

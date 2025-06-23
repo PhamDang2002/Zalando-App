@@ -44,11 +44,11 @@ const NavHeader = () => {
 
       {!userInfo._id && (
         <div className="flex items-center">
-          <Link to="/" className="mx-3 capitalize hover:text-white/70">
+          <Link to="/register" className="mx-3 capitalize hover:text-white/70">
             Đăng ký
           </Link>
           <div className="h-4 border-r-[1px] border-r-white/40" />
-          <Link to="/" className="mx-3 capitalize hover:text-white/70">
+          <Link to="/login" className="mx-3 capitalize hover:text-white/70">
             Đăng nhập
           </Link>
         </div>
