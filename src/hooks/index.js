@@ -18,13 +18,16 @@ import { useMemo } from "react";
 import { useRef } from "react";
 import { useEffect } from "react";
 import { triggerReset } from "@redux/slices/settingsSlice";
+import { rootApi } from "@services/rootApi";
 
 export const useLogout = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const logOut = () => {
     dispatch(logout());
+    dispatch(rootApi.util.resetApiState());
     navigate("/", { replace: true });
+    window.location.reload(); // Reload the page after logout
   };
   return { logOut };
 };
