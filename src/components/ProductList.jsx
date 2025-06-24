@@ -98,12 +98,11 @@ const ProductList = ({
               </div>
             </div>
             {/* Rating and Sold */}
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between gap-2">
               <div className="flex items-center space-x-2">
                 <div className="flex items-center">
                   <ProductRating star={star} />
                 </div>
-                <span className="text-xs text-neutral-500">({star})</span>
               </div>
               <div className="text-xs text-neutral-500">
                 <span className="font-medium">

@@ -197,7 +197,7 @@ export default function ProductCart() {
                         <div className="grid grid-cols-5 items-center">
                           <div className="col-span-2">
                             <div className="flex items-center justify-center">
-                              <span className="text-gray-300 line-through">
+                              <span className="text-gray-500 line-through">
                                 {currencyFormatter(
                                   purchase?.product?.price_before_discount,
                                 )}
