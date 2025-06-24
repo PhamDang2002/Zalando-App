@@ -2,6 +2,7 @@ import Pagination from "@components/Pagination";
 import ProductList from "@components/ProductList";
 import ProductType from "@components/ProductType";
 import Sidebar from "@components/Sidebar";
+
 import { pageofProduct } from "@redux/slices/authSlice";
 import { useEffect } from "react";
 import { useState } from "react";
@@ -22,10 +23,11 @@ function HomePage() {
     // When page changes, dispatch the new page
     dispatch(pageofProduct(page));
   }, [page, dispatch, pageSize]);
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-neutral-50 to-neutral-100">
       {/* Main Content */}
-      <div className="container mx-auto px-2 py-4 sm:px-4 md:px-6 md:py-8">
+      <div className={`container mx-auto px-2 py-4 sm:px-4 md:px-6 md:py-8`}>
         <div className="flex flex-col gap-4 md:gap-8 lg:flex-row">
           {/* Sidebar */}
           <div className="mb-4 w-full flex-shrink-0 lg:mb-0 lg:w-64">

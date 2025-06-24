@@ -86,8 +86,8 @@ const MainHeader = () => {
         </Link>
       )}
 
-      <form className="col-span-9">
-        <div className="shadow-soft relative flex rounded-2xl bg-white/95 p-2 backdrop-blur-sm">
+      <form className={`col-span-9 ${isMediumLayout && "col-span-8"}`}>
+        <div className="relative flex rounded-2xl bg-white/95 p-2 shadow-soft backdrop-blur-sm">
           <input
             type="text"
             ref={searchInputRef}
@@ -97,22 +97,26 @@ const MainHeader = () => {
             onChange={(e) => setSearchTerm(e.target.value)}
             onKeyDown={handleKeyDown}
           />
-          <button className="bg-gradient-accent hover:shadow-glow-accent flex-shrink-0 rounded-xl px-4 py-3 transition-all duration-300 hover:scale-105 active:scale-95">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={2}
-              stroke="currentColor"
-              className="h-5 w-5 text-white"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
-              />
-            </svg>
-          </button>
+          {isMediumLayout ? (
+            <div className="hidden"></div>
+          ) : (
+            <button className="flex-shrink-0 rounded-xl bg-gradient-accent px-4 py-3 transition-all duration-300 hover:scale-105 hover:shadow-glow-accent active:scale-95">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={2}
+                stroke="currentColor"
+                className="h-5 w-5 text-white"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+                />
+              </svg>
+            </button>
+          )}
         </div>
       </form>
 
@@ -120,11 +124,11 @@ const MainHeader = () => {
         <div>
           <Popover
             renderPopover={
-              <div className="shadow-large animate-fade-in relative max-w-[400px] rounded-2xl border border-neutral-200 bg-white text-sm">
+              <div className="relative max-w-[400px] animate-fade-in rounded-2xl border border-neutral-200 bg-white text-sm shadow-large">
                 {purchasesInCart && purchasesInCart.length > 0 ? (
-                  <div className="p-4">
+                  <div className={`p-4 ${isMediumLayout && "!w-[99vw]"}`}>
                     <div className="mb-4 flex items-center space-x-2">
-                      <div className="bg-accent-500 h-2 w-2 rounded-full"></div>
+                      <div className="h-2 w-2 rounded-full bg-accent-500"></div>
                       <span className="font-semibold text-neutral-700">
                         Sản phẩm mới thêm
                       </span>
@@ -141,7 +145,7 @@ const MainHeader = () => {
                               <img
                                 src={`${purchase?.product?.image}`}
                                 alt={purchase?.data?.data?.name}
-                                className="shadow-soft h-12 w-12 rounded-lg object-cover"
+                                className="h-12 w-12 rounded-lg object-cover shadow-soft"
                               />
                             </div>
                             <div className="ml-3 flex-grow overflow-hidden">
@@ -153,7 +157,7 @@ const MainHeader = () => {
                               </div>
                             </div>
                             <div className="ml-3 flex-shrink-0">
-                              <span className="text-accent-600 font-semibold">
+                              <span className="font-semibold text-accent-600">
                                 {currencyFormatter(purchase?.price)}
                               </span>
                             </div>
@@ -217,7 +221,7 @@ const MainHeader = () => {
                   />
                 </svg>
                 {purchasesInCart && purchasesInCart.length > 0 && (
-                  <span className="bg-accent-500 animate-bounce-soft absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full text-xs font-semibold text-white">
+                  <span className="absolute -right-1 -top-1 flex h-5 w-5 animate-bounce-soft items-center justify-center rounded-full bg-accent-500 text-xs font-semibold text-white">
                     {purchasesInCart.length}
                   </span>
                 )}

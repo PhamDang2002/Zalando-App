@@ -82,14 +82,14 @@ const ProductList = ({
             <div className="mb-2 sm:mb-3">
               <div className="flex items-center space-x-2">
                 {price_before_discount > price ? (
-                  <>
+                  <div className="flex flex-col">
                     <span className="text-base font-bold text-accent-600 sm:text-lg">
                       {currencyFormatter(price)}
                     </span>
                     <span className="text-xs text-neutral-400 line-through sm:text-sm">
                       {currencyFormatter(price_before_discount)}
                     </span>
-                  </>
+                  </div>
                 ) : (
                   <span className="text-base font-bold text-accent-600 sm:text-lg">
                     {currencyFormatter(price)}
