@@ -40,14 +40,19 @@ export default function ChangePassword() {
     updateUser(formData).unwrap();
   };
   return (
-    <div className="card shadow-large animate-fade-in mx-auto mt-10 max-w-xl rounded-3xl bg-white p-8 md:p-12">
-      <div className="mb-8 border-b border-neutral-100 pb-4">
-        <h1 className="text-gradient mb-1 text-2xl font-bold">Đổi mật khẩu</h1>
-        <div className="text-sm text-neutral-500">
+    <div className="card mx-auto mt-6 w-full max-w-lg animate-fade-in rounded-3xl bg-white p-4 shadow-large sm:mt-10 sm:p-8 md:p-12">
+      <div className="mb-6 border-b border-neutral-100 pb-4 sm:mb-8">
+        <h1 className="text-gradient mb-1 text-xl font-bold sm:text-2xl">
+          Đổi mật khẩu
+        </h1>
+        <div className="text-xs text-neutral-500 sm:text-sm">
           Quản lý thông tin hồ sơ để bảo mật tài khoản
         </div>
       </div>
-      <form className="space-y-6" onSubmit={handleSubmit(handleChangePassword)}>
+      <form
+        className="space-y-4 sm:space-y-6"
+        onSubmit={handleSubmit(handleChangePassword)}
+      >
         <FormField
           name="password"
           label="Mật khẩu hiện tại"
@@ -126,7 +131,7 @@ export default function ChangePassword() {
         <div className="flex justify-end">
           <Button
             variant="contained"
-            className="btn-primary shadow-glow rounded-xl px-8 py-3 text-base"
+            className="btn-primary rounded-xl px-6 py-2 text-sm shadow-glow sm:px-8 sm:py-3 sm:text-base"
             type="submit"
           >
             Lưu thay đổi

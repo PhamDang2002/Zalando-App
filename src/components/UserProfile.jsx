@@ -7,13 +7,13 @@ import { Link, NavLink } from "react-router-dom";
 export default function UserProfile() {
   const profile = useSelector((state) => state.auth.userInfo);
   const displayEmail =
-    profile?.email?.length > 10
-      ? profile?.email.slice(0, 10) + "..."
+    profile?.email?.length > 50
+      ? profile?.email.slice(0, 50) + "..."
       : profile?.email;
 
   return (
-    <div className="card shadow-large animate-fade-in w-[250px] overflow-hidden rounded-2xl bg-white p-6">
-      <div className="mb-6 flex items-center border-b border-neutral-100 pb-6">
+    <div className="card mx-auto w-full max-w-xs animate-fade-in overflow-hidden rounded-2xl border border-neutral-100 bg-white p-4 shadow-large sm:p-6 md:max-w-none">
+      <div className="mb-6 flex flex-col items-center gap-4 border-b border-neutral-100 pb-6 sm:flex-row sm:gap-0">
         <Link to="/">
           <Avatar
             sx={{
@@ -26,13 +26,13 @@ export default function UserProfile() {
             {profile?.email?.[0]?.toUpperCase()}
           </Avatar>
         </Link>
-        <div className="flex-grow pl-4">
-          <div className="mb-1 truncate text-lg font-semibold text-neutral-800">
+        <div className="flex-grow text-center sm:pl-4 sm:text-left">
+          <div className="mb-1 truncate text-base font-semibold text-neutral-800 sm:text-lg">
             {displayEmail}
           </div>
           <Link
             to="/user/profile"
-            className="text-brand-600 flex items-center gap-1 text-sm font-medium hover:underline"
+            className="flex items-center justify-center gap-1 text-xs font-medium text-brand-600 hover:underline sm:justify-start sm:text-sm"
           >
             <svg
               width={14}
@@ -56,9 +56,9 @@ export default function UserProfile() {
           to="/user/profile"
           className={({ isActive }) =>
             classNames(
-              "flex items-center gap-3 rounded-xl px-4 py-3 font-medium transition-all duration-200",
+              "flex items-center gap-3 rounded-xl px-3 py-2 text-xs font-medium transition-all duration-200 sm:px-4 sm:py-3 sm:text-base",
               {
-                "bg-gradient-primary shadow-soft scale-105 text-white":
+                "scale-105 bg-gradient-primary text-white shadow-soft":
                   isActive,
                 "text-neutral-700 hover:bg-neutral-50": !isActive,
               },
@@ -86,9 +86,9 @@ export default function UserProfile() {
           to="/user/password"
           className={({ isActive }) =>
             classNames(
-              "flex items-center gap-3 rounded-xl px-4 py-3 font-medium transition-all duration-200",
+              "flex items-center gap-3 rounded-xl px-3 py-2 text-xs font-medium transition-all duration-200 sm:px-4 sm:py-3 sm:text-base",
               {
-                "bg-gradient-primary shadow-soft scale-105 text-white":
+                "scale-105 bg-gradient-primary text-white shadow-soft":
                   isActive,
                 "text-neutral-700 hover:bg-neutral-50": !isActive,
               },
@@ -116,9 +116,9 @@ export default function UserProfile() {
           to="/user/purchase"
           className={({ isActive }) =>
             classNames(
-              "flex items-center gap-3 rounded-xl px-4 py-3 font-medium transition-all duration-200",
+              "flex items-center gap-3 rounded-xl px-3 py-2 text-xs font-medium transition-all duration-200 sm:px-4 sm:py-3 sm:text-base",
               {
-                "bg-gradient-primary shadow-soft scale-105 text-white":
+                "scale-105 bg-gradient-primary text-white shadow-soft":
                   isActive,
                 "text-neutral-700 hover:bg-neutral-50": !isActive,
               },

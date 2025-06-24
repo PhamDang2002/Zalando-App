@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { Drawer } from "@mui/material";
 import SideBarContent from "./SideBarContent";
 import { useDispatch, useSelector } from "react-redux";
@@ -17,13 +16,15 @@ const Sidebar = ({ page, setPage }) => {
     <Drawer
       open={isShowDrawer}
       onClose={() => dispatch(toggleDrawer())}
-      classes={{ paper: "p-4 flex flex-col " }}
+      classes={{ paper: "p-4 flex flex-col w-full max-w-full" }}
       ModalProps={page > 0 ? { keepMounted: true } : {}}
     >
       <SideBarContent category={category} page={page} setPage={setPage} />
     </Drawer>
   ) : (
-    <SideBarContent category={category} page={page} setPage={setPage} />
+    <div className="w-full lg:w-64">
+      <SideBarContent category={category} page={page} setPage={setPage} />
+    </div>
   );
 };
 

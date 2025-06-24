@@ -22,7 +22,7 @@ const ProductList = ({
   return (
     <Link to={`/products/${id}`}>
       <div className="group">
-        <div className="card card-hover overflow-hidden bg-white">
+        <div className="card card-hover overflow-hidden bg-white p-2 sm:p-3 md:p-4">
           {/* Image Container */}
           <div className="relative w-full overflow-hidden pt-[100%]">
             <img
@@ -32,8 +32,8 @@ const ProductList = ({
             />
             {/* Discount Badge */}
             {price_before_discount > price && (
-              <div className="absolute left-3 top-3">
-                <span className="badge badge-accent font-semibold">
+              <div className="absolute left-2 top-2 sm:left-3 sm:top-3">
+                <span className="badge badge-accent text-xs font-semibold sm:text-sm">
                   -
                   {Math.round(
                     ((price_before_discount - price) / price_before_discount) *
@@ -46,14 +46,14 @@ const ProductList = ({
             {/* Quick View Overlay */}
             <div className="absolute inset-0 flex items-center justify-center bg-black/0 transition-all duration-300 group-hover:bg-black/10">
               <div className="opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                <div className="shadow-soft rounded-full bg-white/90 p-3 backdrop-blur-sm">
+                <div className="rounded-full bg-white/90 p-2 shadow-soft backdrop-blur-sm sm:p-3">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
                     strokeWidth={2}
                     stroke="currentColor"
-                    className="h-5 w-5 text-neutral-700"
+                    className="h-4 w-4 text-neutral-700 sm:h-5 sm:w-5"
                   >
                     <path
                       strokeLinecap="round"
@@ -70,42 +70,40 @@ const ProductList = ({
               </div>
             </div>
           </div>
-
           {/* Content */}
-          <div className="p-4">
+          <div className="p-2 sm:p-4">
             {/* Product Name */}
-            <div className="mb-3">
-              <h3 className="group-hover:text-brand-600 line-clamp-2 min-h-[2.5rem] text-sm font-medium leading-relaxed text-neutral-800 transition-colors duration-200">
+            <div className="mb-2 sm:mb-3">
+              <h3 className="line-clamp-2 min-h-[2.5rem] text-xs font-medium leading-relaxed text-neutral-800 transition-colors duration-200 group-hover:text-brand-600 sm:text-sm">
                 {name}
               </h3>
             </div>
-
             {/* Price Section */}
-            <div className="mb-3">
+            <div className="mb-2 sm:mb-3">
               <div className="flex items-center space-x-2">
                 {price_before_discount > price ? (
                   <>
-                    <span className="text-accent-600 text-lg font-bold">
+                    <span className="text-base font-bold text-accent-600 sm:text-lg">
                       {currencyFormatter(price)}
                     </span>
-                    <span className="text-sm text-neutral-400 line-through">
+                    <span className="text-xs text-neutral-400 line-through sm:text-sm">
                       {currencyFormatter(price_before_discount)}
                     </span>
                   </>
                 ) : (
-                  <span className="text-accent-600 text-lg font-bold">
+                  <span className="text-base font-bold text-accent-600 sm:text-lg">
                     {currencyFormatter(price)}
                   </span>
                 )}
               </div>
             </div>
-
             {/* Rating and Sold */}
-            <div className="flex items-center justify-between gap-2">
+            <div className="flex items-center justify-between">
               <div className="flex items-center space-x-2">
                 <div className="flex items-center">
                   <ProductRating star={star} />
                 </div>
+                <span className="text-xs text-neutral-500">({star})</span>
               </div>
               <div className="text-xs text-neutral-500">
                 <span className="font-medium">
@@ -114,9 +112,8 @@ const ProductList = ({
                 <span className="ml-1">đã bán</span>
               </div>
             </div>
-
             {/* Free Shipping Badge */}
-            <div className="mt-3 border-t border-neutral-100 pt-3">
+            <div className="mt-2 border-t border-neutral-100 pt-2">
               <span className="badge badge-success text-xs">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

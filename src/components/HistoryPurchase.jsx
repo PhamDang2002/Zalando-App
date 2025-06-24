@@ -5,83 +5,85 @@ import classNames from "classnames";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { purchasesStatus } from "./Purchase";
+import { useDetectLayout } from "@hooks/index";
 
 export default function HistoryPurchase() {
   const [status, setStatus] = useState(purchasesStatus.all);
   const purchasesInCart = useGetPurchaseQuery({ status })?.data?.data;
+  const { isMediumLayout } = useDetectLayout();
 
   const purchaseTabsLink = purchaseTabs.map((tab) => (
     <button
       key={tab.status}
       onClick={() => setStatus(tab.status)}
       className={classNames(
-        "rounded-full px-6 py-2 text-sm font-semibold transition-all duration-200 focus:outline-none",
+        "mb-2 rounded-full border border-transparent px-4 py-2 text-xs font-semibold transition-all duration-200 focus:outline-none sm:mb-0 sm:px-6 sm:text-sm",
         {
-          "bg-gradient-accent shadow-glow-accent scale-105 text-white":
+          "scale-105 bg-gradient-accent text-white shadow-glow-accent":
             status === tab.status,
-          "bg-neutral-100 text-neutral-600 hover:bg-neutral-200":
+          "border-neutral-200 bg-neutral-100 text-neutral-600 hover:bg-neutral-200":
             status !== tab.status,
         },
       )}
-      style={{ marginRight: 12 }}
+      style={{ marginRight: 8 }}
     >
       {tab.name}
     </button>
   ));
 
   return (
-    <div className="animate-fade-in mx-auto mt-10 w-full max-w-3xl px-2 md:px-0">
+    <div className="mx-auto mt-6 w-full max-w-2xl animate-fade-in px-0 sm:mt-10 sm:px-0">
       {/* Tabs */}
-      <div className="mb-8 flex flex-wrap justify-center">
+      <div className="mb-6 flex flex-wrap justify-center gap-2 sm:mb-8 sm:gap-4">
         {purchaseTabsLink}
       </div>
       {/* Purchases */}
-      <div className="space-y-6">
+      <div className="space-y-4 sm:space-y-6">
         {purchasesInCart && purchasesInCart.length > 0 ? (
           purchasesInCart.slice(0, 10).map((purchase) => (
             <div
               key={purchase._id}
-              className="card shadow-soft hover:shadow-large flex flex-col items-center gap-6 overflow-hidden p-4 transition-all duration-200 sm:w-[60vw] sm:p-6 md:flex-row"
+              className={`card flex w-full flex-col items-center gap-4 overflow-hidden rounded-2xl border border-neutral-100 bg-white p-3 shadow-soft transition-all duration-200 hover:shadow-large sm:p-6 ${isMediumLayout ? "w-[85vw]" : ""}`}
             >
               <Link
                 to={`/products/${purchase.product._id}`}
-                className="flex flex-1 flex-col items-center gap-4 md:flex-row"
+                className="group flex w-full flex-1 flex-col items-center gap-3 sm:gap-4 md:flex-row"
               >
                 <div className="flex w-full flex-shrink-0 justify-center md:w-auto">
                   <img
-                    className="shadow-soft h-20 w-20 rounded-xl object-cover"
+                    className="h-16 w-16 rounded-xl object-cover shadow-soft transition-transform duration-300 group-hover:scale-105 sm:h-20 sm:w-20"
                     src={purchase.product.image}
                     alt={purchase.product.name}
                   />
                 </div>
                 <div className="w-full flex-grow overflow-hidden md:w-auto">
-                  <div className="mb-1 truncate text-lg font-semibold text-neutral-800">
+                  <div className="mb-1 truncate text-base font-semibold text-neutral-800 transition-colors duration-200 group-hover:text-brand-600 sm:text-lg">
                     {purchase.product.name.slice(0, 50)}
                   </div>
                   <div className="mt-1 flex flex-wrap items-center gap-2">
-                    <span className="badge badge-primary">
+                    <span className="badge badge-primary text-xs sm:text-sm">
                       x{purchase.buy_count}
                     </span>
-                    <span className="badge badge-accent">
+                    <span className="badge badge-accent text-xs sm:text-sm">
                       {tabNameFromStatus(purchase.status)}
                     </span>
                   </div>
                 </div>
-                <div className="mt-4 w-full flex-shrink-0 text-right md:mt-0 md:w-auto">
-                  <span className="block text-sm text-neutral-400 line-through">
+                <div className="mt-3 w-full flex-shrink-0 text-right md:mt-0 md:w-auto">
+                  <span className="block text-xs text-neutral-400 line-through sm:text-sm">
                     {currencyFormatter(purchase.product.price_before_discount)}
                   </span>
-                  <span className="text-accent-600 block text-lg font-bold">
+                  <span className="block text-base font-bold text-accent-600 sm:text-lg">
                     {currencyFormatter(purchase.product.price)}
                   </span>
                 </div>
               </Link>
-              <div className="mt-4 flex w-full justify-end md:mt-0">
+              <div className="mt-3 flex w-full justify-end md:mt-0">
                 <div>
-                  <span className="text-sm text-neutral-500">
+                  <span className="text-xs text-neutral-500 sm:text-sm">
                     Tổng giá tiền
                   </span>
-                  <span className="text-gradient ml-4 text-xl font-bold">
+                  <span className="text-gradient ml-2 text-lg font-bold sm:ml-4 sm:text-xl">
                     {currencyFormatter(
                       purchase.product.price * purchase.buy_count,
                     )}
@@ -91,15 +93,15 @@ export default function HistoryPurchase() {
             </div>
           ))
         ) : (
-          <div className="flex flex-col items-center justify-center py-24">
-            <div className="mb-6 flex h-24 w-24 items-center justify-center rounded-full bg-neutral-100">
+          <div className="flex flex-col items-center justify-center py-16 sm:py-24">
+            <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-neutral-100 sm:h-24 sm:w-24">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
                 stroke="currentColor"
-                className="h-12 w-12 text-neutral-400"
+                className="h-10 w-10 text-neutral-400 sm:h-12 sm:w-12"
               >
                 <path
                   strokeLinecap="round"
@@ -108,10 +110,10 @@ export default function HistoryPurchase() {
                 />
               </svg>
             </div>
-            <h3 className="mb-2 text-xl font-semibold text-neutral-700">
+            <h3 className="mb-2 text-lg font-semibold text-neutral-700 sm:text-xl">
               Bạn chưa có đơn hàng nào
             </h3>
-            <p className="text-neutral-500">
+            <p className="text-xs sm:text-neutral-500">
               Khi mua hàng, đơn hàng của bạn sẽ xuất hiện ở đây
             </p>
           </div>
@@ -134,7 +136,7 @@ function tabNameFromStatus(status) {
     case purchasesStatus.delivered:
       return "Đã giao";
     case purchasesStatus.cancelled:
-      return "Đã hủy";
+      return "Đã huỷ";
     default:
       return "Khác";
   }

@@ -93,12 +93,12 @@ export default function Profile() {
     }
   }, [data, dispatch, isSuccess, updateUser]);
   return (
-    <div className="card shadow-large animate-fade-in mx-auto mt-10 max-w-4xl rounded-3xl bg-white p-8 md:p-12">
-      <div className="flex flex-col gap-10 md:flex-row">
+    <div className="card mx-auto mt-6 w-full max-w-2xl animate-fade-in rounded-3xl bg-white p-4 shadow-large sm:mt-10 sm:p-8 md:p-12">
+      <div className="flex flex-col gap-8 md:flex-row md:gap-10">
         {/* Avatar Section */}
         <div className="flex flex-col items-center md:w-1/3">
           <div className="relative mb-4">
-            <div className="bg-gradient-primary shadow-glow flex h-32 w-32 items-center justify-center rounded-full p-1">
+            <div className="flex h-24 w-24 items-center justify-center rounded-full bg-gradient-primary p-1 shadow-glow sm:h-32 sm:w-32">
               <div className="flex h-full w-full items-center justify-center overflow-hidden rounded-full bg-white">
                 {profile?.avatar ? (
                   <img
@@ -107,7 +107,7 @@ export default function Profile() {
                     className="h-full w-full rounded-full object-cover"
                   />
                 ) : (
-                  <div className="text-brand-600 bg-brand-50 flex h-full w-full items-center justify-center rounded-full text-4xl font-bold">
+                  <div className="flex h-full w-full items-center justify-center rounded-full bg-brand-50 text-2xl font-bold text-brand-600 sm:text-4xl">
                     {profile?.name?.[0]?.toUpperCase() ||
                       profile?.email?.[0]?.toUpperCase()}
                   </div>
@@ -116,25 +116,30 @@ export default function Profile() {
             </div>
           </div>
           <div className="mt-2 text-center">
-            <div className="text-lg font-semibold text-neutral-800">
+            <div className="text-base font-semibold text-neutral-800 sm:text-lg">
               {profile?.name}
             </div>
-            <div className="text-sm text-neutral-500">{profile?.email}</div>
+            <div className="text-xs text-neutral-500 sm:text-sm">
+              {profile?.email}
+            </div>
           </div>
         </div>
         {/* Form Section */}
-        <div className="flex-1">
-          <div className="mb-8 border-b border-neutral-100 pb-4">
-            <h1 className="text-gradient mb-1 text-2xl font-bold">
+        <div className="w-full flex-1">
+          <div className="mb-6 border-b border-neutral-100 pb-4 sm:mb-8">
+            <h1 className="text-gradient mb-1 text-xl font-bold sm:text-2xl">
               Hồ Sơ Của Tôi
             </h1>
-            <div className="text-sm text-neutral-500">
+            <div className="text-xs text-neutral-500 sm:text-sm">
               Quản lý thông tin hồ sơ để bảo mật tài khoản
             </div>
           </div>
           <FormProvider>
-            <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
-              <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+            <form
+              className="space-y-4 sm:space-y-6"
+              onSubmit={handleSubmit(onSubmit)}
+            >
+              <div className="grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2">
                 <FormField
                   name="email"
                   label="Email"
@@ -185,7 +190,7 @@ export default function Profile() {
               <div className="flex justify-end">
                 <Button
                   variant="contained"
-                  className="btn-primary shadow-glow rounded-xl px-8 py-3 text-base"
+                  className="btn-primary rounded-xl px-6 py-2 text-sm shadow-glow sm:px-8 sm:py-3 sm:text-base"
                   type="submit"
                 >
                   Lưu thay đổi
