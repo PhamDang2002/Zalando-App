@@ -14,6 +14,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { openSnackbar } from "@redux/slices/snackbarSlice";
+import ProductCartItem from "./ProductCartItem";
 
 export default function ProductCart() {
   const status = -1;
@@ -160,82 +161,16 @@ export default function ProductCart() {
               {productsCart?.length > 0 && (
                 <div className="my-3 rounded-sm bg-white p-5 shadow">
                   {productsCart.map((purchase) => (
-                    <div
-                      key={purchase?._id || console.log(purchase)}
-                      className="mb-5 grid grid-cols-12 items-center rounded-sm border border-gray-200 bg-white px-4 py-5 text-center text-sm text-gray-500 first:mt-0"
-                    >
-                      <div className="col-span-6">
-                        <div className="flex">
-                          <div className="flex flex-shrink-0 items-center justify-center pr-3">
-                            <input
-                              type="checkbox"
-                              className="h-5 w-5 accent-orange"
-                              checked={selectedProducts.includes(purchase._id)} // Kiểm tra xem sản phẩm đã được chọn chưa
-                              onChange={() =>
-                                handleCheckboxChange(purchase._id)
-                              }
-                            />
-                          </div>
-                          <div className="flex-grow">
-                            <div className="flex">
-                              <Link className="h-20 w-20 flex-shrink-0" to="/">
-                                <img
-                                  alt={purchase?.product?.name}
-                                  src={`${purchase?.product?.image}`}
-                                />
-                              </Link>
-                              <div className="flex-grow px-2 pb-2 pt-1">
-                                <Link to="/" className="line-clamp-2 text-left">
-                                  {purchase?.product?.name}
-                                </Link>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="col-span-6">
-                        <div className="grid grid-cols-5 items-center">
-                          <div className="col-span-2">
-                            <div className="flex items-center justify-center">
-                              <span className="text-gray-500 line-through">
-                                {currencyFormatter(
-                                  purchase?.product?.price_before_discount,
-                                )}
-                              </span>
-                              <span className="ml-3">
-                                {currencyFormatter(purchase?.product?.price)}
-                              </span>
-                            </div>
-                          </div>
-                          <div className="col-span-1">
-                            <QuantityController
-                              max={purchase?.product?.quantity}
-                              value={purchase?.buy_count}
-                              classNameWrapper="flex items-center"
-                              disabled={purchase?.disabled}
-                              onIncrease={() => handleIncrease(purchase)}
-                              onDecrease={() => handleDecrease(purchase)}
-                              onType={(value) => handleType(purchase, value)}
-                            />
-                          </div>
-                          <div className="col-span-1">
-                            <span className="text-primary">
-                              {currencyFormatter(
-                                purchase?.product?.price * purchase?.buy_count,
-                              )}
-                            </span>
-                          </div>
-                          <div className="col-span-1">
-                            <button
-                              className="bg-none text-black transition-colors hover:text-primary"
-                              onClick={() => handleDelete(purchase._id)}
-                            >
-                              Xóa
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                    <ProductCartItem
+                      key={purchase?._id}
+                      purchase={purchase}
+                      checked={selectedProducts.includes(purchase._id)}
+                      onCheck={() => handleCheckboxChange(purchase._id)}
+                      onDelete={handleDelete}
+                      onIncrease={handleIncrease}
+                      onDecrease={handleDecrease}
+                      onType={handleType}
+                    />
                   ))}
                 </div>
               )}
