@@ -7,14 +7,19 @@ const Header = () => {
   return (
     <AppBar
       position="static"
-      className="bg-gradient-primary shadow-large text-white"
+      className="bg-gradient-primary text-white shadow-large"
       elevation={0}
     >
-      <Toolbar className="container flex !min-h-fit flex-col !items-end gap-0 py-4">
-        <div className="flex justify-end">
+      <Toolbar className="header-container">
+        {/* Top row - Navigation */}
+        <div className="header-nav">
           <NavHeader />
         </div>
-        <MainHeader />
+
+        {/* Bottom row - Main content */}
+        <div className="header-main">
+          <MainHeader />
+        </div>
       </Toolbar>
     </AppBar>
   );

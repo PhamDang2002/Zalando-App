@@ -65,6 +65,26 @@ button:focus {
   outline: none;
 }
 
+/* Mobile-specific improvements */
+@media (max-width: 640px) {
+  .container {
+    @apply px-4;
+  }
+
+  /* Improve touch targets on mobile */
+  button,
+  a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Better mobile input styling */
+  input,
+  textarea {
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+}
+
 @layer components {
   .container {
     @apply mx-auto flex max-w-7xl gap-6 p-6;
@@ -72,29 +92,47 @@ button:focus {
 
   /* Modern card styles */
   .card {
-    @apply shadow-soft hover:shadow-medium rounded-2xl border border-neutral-100 bg-white transition-all duration-300 hover:border-neutral-200;
+    @apply rounded-2xl border border-neutral-100 bg-white shadow-soft transition-all duration-300 hover:border-neutral-200 hover:shadow-medium;
   }
 
   .card-hover {
-    @apply hover:shadow-large hover:-translate-y-1 hover:border-neutral-300;
+    @apply hover:-translate-y-1 hover:border-neutral-300 hover:shadow-large;
   }
 
   /* Button styles */
   .btn-primary {
-    @apply bg-gradient-primary shadow-soft hover:shadow-medium rounded-xl px-6 py-3 font-semibold text-white transition-all duration-300 hover:scale-105 active:scale-95;
+    @apply rounded-xl bg-gradient-primary px-6 py-3 font-semibold text-white shadow-soft transition-all duration-300 hover:scale-105 hover:shadow-medium active:scale-95;
   }
 
   .btn-secondary {
-    @apply shadow-soft hover:shadow-medium rounded-xl border border-neutral-200 bg-white px-6 py-3 font-semibold text-neutral-700 transition-all duration-300 hover:border-neutral-300;
+    @apply rounded-xl border border-neutral-200 bg-white px-6 py-3 font-semibold text-neutral-700 shadow-soft transition-all duration-300 hover:border-neutral-300 hover:shadow-medium;
   }
 
   .btn-accent {
-    @apply bg-gradient-accent shadow-soft hover:shadow-glow-accent rounded-xl px-6 py-3 font-semibold text-white transition-all duration-300 hover:scale-105 active:scale-95;
+    @apply rounded-xl bg-gradient-accent px-6 py-3 font-semibold text-white shadow-soft transition-all duration-300 hover:scale-105 hover:shadow-glow-accent active:scale-95;
+  }
+
+  /* Mobile-optimized button variants */
+  .btn-primary-mobile {
+    @apply rounded-lg bg-gradient-primary px-4 py-2.5 font-medium text-white shadow-soft transition-all duration-300 active:scale-95;
+  }
+
+  .btn-secondary-mobile {
+    @apply rounded-lg border border-neutral-200 bg-white px-4 py-2.5 font-medium text-neutral-700 shadow-soft transition-all duration-300 active:scale-95;
+  }
+
+  .btn-accent-mobile {
+    @apply rounded-lg bg-gradient-accent px-4 py-2.5 font-medium text-white shadow-soft transition-all duration-300 active:scale-95;
   }
 
   /* Input styles */
   .input-modern {
-    @apply focus:border-brand-500 focus:ring-brand-100 w-full rounded-xl border border-neutral-200 bg-white px-4 py-3 transition-all duration-300 placeholder:text-neutral-400 focus:ring-2;
+    @apply w-full rounded-xl border border-neutral-200 bg-white px-4 py-3 transition-all duration-300 placeholder:text-neutral-400 focus:border-brand-500 focus:ring-2 focus:ring-brand-100;
+  }
+
+  /* Mobile-optimized input */
+  .input-mobile {
+    @apply w-full rounded-lg border border-neutral-200 bg-white px-3 py-2.5 text-base transition-all duration-300 placeholder:text-neutral-400 focus:border-brand-500 focus:ring-2 focus:ring-brand-100;
   }
 
   /* Badge styles */
@@ -129,7 +167,7 @@ button:focus {
   }
 
   .loading-dots > div {
-    @apply animate-pulse-soft h-2 w-2 rounded-full bg-current;
+    @apply h-2 w-2 animate-pulse-soft rounded-full bg-current;
   }
 
   .loading-dots > div:nth-child(2) {
@@ -138,5 +176,30 @@ button:focus {
 
   .loading-dots > div:nth-child(3) {
     animation-delay: 0.4s;
+  }
+
+  /* Responsive header utilities */
+  .header-container {
+    @apply container flex !min-h-fit flex-col !items-stretch gap-2 py-3 md:gap-4 md:py-4;
+  }
+
+  .header-nav {
+    @apply flex w-full items-center justify-end;
+  }
+
+  .header-main {
+    @apply w-full;
+  }
+
+  .header-logo {
+    @apply flex items-center space-x-2;
+  }
+
+  .header-search {
+    @apply w-full flex-1 sm:max-w-2xl;
+  }
+
+  .header-cart {
+    @apply flex items-center justify-center;
   }
 }

@@ -75,7 +75,7 @@ const SideBarContent = ({ page, setPage }) => {
   ]);
 
   return (
-    <div className="space-y-6 p-2 sm:p-4">
+    <div className="space-y-6">
       {isMediumLayout && (
         <div className="mb-6 flex items-center justify-between space-x-3">
           <Link to="/" className="flex flex-shrink-0 items-center">
